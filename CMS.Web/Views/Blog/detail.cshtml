@@ -1,0 +1,131 @@
+﻿@model CMS.Web.Models.BlogsModel
+@{
+    var blog = Model;
+    ViewData["Title"] = blog.title;
+
+}
+
+@{
+
+    var setups = (List<CMS.Core.Entity.Setup>)ViewBag.setup;
+
+    var contactNo = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getPhoneNumberKey).SingleOrDefault()?.value;
+
+    var orgName = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getOrganisationNameKey).SingleOrDefault()?.value;
+
+    var panNo = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getPanNumberKey).SingleOrDefault()?.value;
+
+    var email = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getEmailKey).SingleOrDefault()?.value;
+
+    var address = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getAddressKey).SingleOrDefault()?.value;
+
+    var facebookUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getFacebookKey).SingleOrDefault()?.value;
+
+    var instaUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getInstaKey).SingleOrDefault()?.value;
+
+    var TwitterUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getTwitterKey).SingleOrDefault()?.value;
+
+    var companyDescription = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getCompanyShortDescriptionKey).SingleOrDefault()?.value;
+
+}
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f22836a0984abd4"></script>
+
+<div class="wshipping-content-block wshipping-breadcroumb inner-bg-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <h1>Blog</h1>
+                <a href="/" title="Home">Home</a> / @blog.title.ToUpperInvariant()
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Breadcroumbs end -->
+<!-- Blog Details start -->
+<div class="wshipping-content-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-12">
+                <!-- Blog content start -->
+                <div class="single-blog-details">
+                    @{
+                        var imgSrc = "/images/";
+                        if (string.IsNullOrWhiteSpace(blog.image_name))
+                        {
+                            imgSrc = "/img/user.png";
+                        }
+                        else
+                        {
+                            imgSrc += "custom/" + blog.image_name;
+                        }
+                    }
+                    <img src="@imgSrc" class="img-responsive single-blog-img" alt="" />
+                    <div class="single-blog-content">
+                        <h2>@blog.title.ToUpperInvariant()</h2>
+                        <h6>Posted on  @blog.posted_on.ToString(" MMMM, dd yyyy") by @blog.artical_by.ToUpperInvariant()</h6>
+
+                        <p>@Html.Raw(blog.description)</p>
+                        <div>
+                            <li>
+                                <div class="addthis_inline_share_toolbox"></div>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog content end -->
+
+                <div class="space60"></div>
+
+                <div class="comment-sec">
+                    <h3 class="heading3-border text-uppercase">Comments</h3>
+
+                    <div class="comment-group">
+                        @{ foreach (var blogsComment in blog.blog_comments)
+                            {
+                                <div><img src="~/img/user.png" alt=""style="width:70px;height:70px;" /></div>
+                                <div class="comment-content">
+                                    <h6>@blogsComment.comment_by.ToUpperInvariant()  <span><i class="fa fa-clock-o"></i> @blogsComment.comment_date.ToString("dd MMMM yyyy")</span></h6>
+                                    <p>@blogsComment.comments</p>
+                                </div>
+                            }
+                        }
+                    </div>
+                    
+                    <!-- Comment end -->
+                    <!-- Comment form start -->
+                    <div class="comment-form">
+                        <h3>Leave a Comment</h3>
+                        <p>Your email address will not be published. Required fields are marked</p>
+                        <form action="/blog/send-blogcontact" method="post">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-6">
+                                        @Html.HiddenFor(a => a.blog_id)
+                                        @Html.TextBoxFor(a => a.comment_by, new { type = "text", name = "name", placeholder = "Your Name here",@class="form-control" })
+                                    </div>
+                                    <div class="col-12 col-md-6 col-lg-6">
+                                        @Html.TextBoxFor(a => a.email, new { type = "email", name = "email", placeholder = "Your email here", @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.TextAreaFor(a => a.comments, new { id = "message", name = "message", rows = "3", placeholder = "Tell us a few words", @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Comment form end -->
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+

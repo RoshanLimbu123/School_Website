@@ -1,0 +1,166 @@
+﻿@model List<CMS.Core.Entity.Career>
+@{
+    ViewData["Title"] = "Careers";
+}
+
+@{
+
+    var setups = (List<CMS.Core.Entity.Setup>)ViewBag.setup;
+
+    var contactNo = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getPhoneNumberKey).SingleOrDefault()?.value;
+
+    var orgName = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getOrganisationNameKey).SingleOrDefault()?.value;
+
+    var panNo = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getPanNumberKey).SingleOrDefault()?.value;
+
+    var email = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getEmailKey).SingleOrDefault()?.value;
+
+    var address = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getAddressKey).SingleOrDefault()?.value;
+
+    var facebookUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getFacebookKey).SingleOrDefault()?.value;
+
+    var instaUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getInstaKey).SingleOrDefault()?.value;
+
+    var TwitterUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getTwitterKey).SingleOrDefault()?.value;
+
+    var companyDescription = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getCompanyShortDescriptionKey).SingleOrDefault()?.value;
+
+
+
+}
+
+
+<div class="wshipping-content-block wshipping-breadcroumb inner-bg-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <h1>Career</h1>
+                <a href="/" title="Home">Home</a> / Career
+            </div>
+
+        </div>
+    </div>
+</div>
+<div style="margin-top: 50px;"></div>
+
+@*<div class="page-content">
+        <div class="row page-row">
+            <div class="jobs-wrapper col-lg-8 col-md-9 col-12" style="margin-left:100px;margin-bottom:80px;margin-top:70px;">
+                @foreach (var career in Model)
+                {
+                    <div class="card page-row " style="border:1px solid green; border-radius:15px;padding:20px;margin:20px;">
+                        <div class="card-header">
+                            <h3 class="sidebar-title"><a href="/">@career.title.ToUpper()</a></h3>
+
+                        </div>
+                        <div class="card-body">
+
+                            @{
+                                var imgSrc = "/images/";
+                                if (string.IsNullOrWhiteSpace(career.image_name))
+                                {
+                                    imgSrc = "/img/user.png";
+                                }
+                                else
+                                {
+                                    imgSrc += "custom/" + career.image_name;
+                                }
+                            }
+                            <img class="img-fluid" src="@imgSrc" alt="" style="width:300px;height:250px;" />
+
+
+
+                        </div>
+                        @Html.Raw(career.description)
+                        <ul class="list-group">
+
+                            <li class="list-group-item"><strong>Opening Date: </strong>@career.opening_date.ToString("dddd, dd MMMM yyyy")</li>
+                            <li class="list-group-item"><strong>Closing Date: </strong>@career.closing_date</li>
+                            <li class="list-group-item"><strong>Location: </strong> @address</li>
+                            <li class="list-group-item"><strong>Email: </strong> @email</li>
+                            <li class="list-group-item"><strong>Contact Number: </strong> @contactNo</li>
+
+                        </ul>
+                        <div class="card-footer">
+                            <div class="row">
+                                <ul class="list-inline col-md-8 col-sm-6 col-xs-6">
+                                    <li></li>
+                                </ul>
+                                <div class="meta col-md-4 col-sm-6 col-xs-6 text-right">
+                                    <small>Posted By: @orgName.ToUpperInvariant() </small>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>//panel
+
+                }
+
+
+
+            </div>//jobs-wrapper
+
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12" style="margin-bottom:80px;margin-top:70px;">
+                <div class="sidebar">
+                    <div class="sidebar-box">
+                        <div class="sidebar-box-inner">
+                            <h3 class="sidebar-title">Contacts</h3>
+                            <div class="sidebar-latest-research-area">
+                                <p>@companyDescription </p>
+                                <p class="tel"><i class="fa fa-phone"></i>Tel: @contactNo</p>
+                                <p class="email"><i class="fa fa-envelope"></i>Email: @email</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>//page-row
+    </div>//page-content*@
+
+
+
+
+<div style="margin-top: 50px;"></div>
+
+
+
+<div class="wshipping-content-block">
+    <div class="container">
+        <div class="row flex-lg-row-reverse">
+            @foreach (var career in Model)
+            {
+                <div class="col-12 col-lg-9">
+                    <!-- blog iteam start -->
+                    <div class="blog-block">
+                        <div>
+                            @{
+                                var imgSrc = "/images/";
+                                if (string.IsNullOrWhiteSpace(career.image_name))
+                                {
+                                    imgSrc = "/img/user.png";
+                                }
+                                else
+                                {
+                                    imgSrc += "custom/" + career.image_name;
+                                }
+                            }
+                            <img src="@imgSrc" />
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-date"> @career.opening_date.ToString(" MMMM ") <span>@career.opening_date.ToString(" dd ")</span> @career.opening_date.ToString(" YYYY ")</div>
+                            <h3><a href="~/career/detail/@career.slug#">@career.title.ToUpper()</a></h3>
+
+                            <p> @Html.Raw(System.Web.HttpUtility.HtmlDecode(career.description))</p>
+                        </div>
+
+                        <div class="continue-read-blog"><a href="~/career/detail/@career.slug#" title="">Continue Reading <i class="fa fa-angle-right"></i></a></div>
+                        <div class="blog-action">
+                             </div>
+                    </div>
+
+                </div>
+            }
+            
+        </div>
+    </div>
+</div>

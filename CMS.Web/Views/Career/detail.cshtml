@@ -1,0 +1,117 @@
+﻿@model CMS.Core.Entity.Career
+@{
+    var career = Model;
+    ViewData["Title"] = career.title;
+
+}
+@{
+
+    var setups = (List<CMS.Core.Entity.Setup>)ViewBag.setup;
+
+    var contactNo = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getPhoneNumberKey).SingleOrDefault()?.value;
+
+    var orgName = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getOrganisationNameKey).SingleOrDefault()?.value;
+
+    var panNo = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getPanNumberKey).SingleOrDefault()?.value;
+
+    var email = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getEmailKey).SingleOrDefault()?.value;
+
+    var address = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getAddressKey).SingleOrDefault()?.value;
+
+    var facebookUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getFacebookKey).SingleOrDefault()?.value;
+
+    var instaUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getInstaKey).SingleOrDefault()?.value;
+
+    var TwitterUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getTwitterKey).SingleOrDefault()?.value;
+
+    var companyDescription = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getCompanyShortDescriptionKey).SingleOrDefault()?.value;
+
+}
+
+@{
+    string getImage(string file_name)
+    {
+        var extension = System.IO.Path.GetExtension(file_name).ToLower();
+
+        var imageFormats = new[] { ".jpeg", ".png", ".jpg" };
+
+        var docFormats = new[] { ".xls", ".xlsx" };
+
+        var pdfFormats = new[] { ".pdf" };
+
+        var powerPointFormats = new[] { ".ppt", ".pptx" };
+
+        if (imageFormats.Contains(extension))
+        {
+            return "/images/custom/" + file_name;
+        }
+
+        if (docFormats.Contains(extension))
+        {
+            return "/images/doc.png";
+        }
+
+        if (pdfFormats.Contains(extension))
+        {
+            return "/images/pdf.png";
+        }
+
+        return "/images/ppt.png";
+    }
+}
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f22836a0984abd4"></script>
+
+
+<div class="wshipping-content-block wshipping-breadcroumb inner-bg-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <h1>Career Details</h1>
+                <a href="/" title="Home">Home</a> / @career.title.ToUpperInvariant()
+            </div>
+
+        </div>
+    </div>
+</div>
+<div style="margin-top: 50px;"></div>
+
+
+
+<section class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="padding-30px-right">
+                    <h3>@career.title.ToUpperInvariant()</h3>
+
+
+                    <span>  @career.opening_date.ToString("dddd, dd MMMM yyyy")</span>
+
+                    <p class="no-margin-bottom">@Html.Raw(career.description)</p>
+                    <p>
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                @{
+                    var imgSrc = "/images/";
+                    if (string.IsNullOrWhiteSpace(career.image_name))
+                    {
+                        imgSrc = "/img/user.png";
+                    }
+                    else
+                    {
+                        imgSrc += "custom/" + career.image_name;
+                    }
+                }
+                <div class="bg-img cover-background box-shadow-primary h-100" data-overlay-dark="0">
+                    <img src="@imgSrc" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<div style="margin-top: 50px;"></div>

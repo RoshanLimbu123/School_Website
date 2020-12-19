@@ -1,0 +1,82 @@
+﻿@model List<CMS.Core.Entity.Services>
+@{
+    ViewData["Title"] = "Services";
+}
+
+
+
+    <section class="page-title-section " data-overlay-dark="7" style="background-image: url(https://64.media.tumblr.com/c9e620b709e7d2b0d929665a7b1380fd/1c601eb4962b2321-4e/s500x750/05025ea8e680e655acdaeb37d7b392d0f1c83103.gifv)">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-7 col-sm-12">
+                    <h1>Services</h1>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <ul class="text-right xs-text-left sm-margin-8px-top xs-margin-5px-top">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+<section>
+    <div class="container">
+        <div class="section-heading">
+            <h3> Services </h3>
+        </div>
+
+        <div class="row">
+            @{ foreach (var services in Model)
+                {
+
+                    <div class="col-lg-4 col-md-6 margin-40px-bottom sm-margin-35px-bottom">
+                        <article class="card blog-card">
+                            @{
+                                var imgSrc = "/images/";
+                                if (string.IsNullOrWhiteSpace(services.image))
+                                {
+                                    imgSrc += "default-image.jpg";
+                                }
+                                else
+                                {
+                                    imgSrc += "custom/" + services.image;
+
+                                }
+
+                            }
+                            <div class="card-img"><img src="@imgSrc" style="height:300px;" alt="" /></div>
+                            <div class="card-body">
+                               
+                                <h3><a href="~/services/detail/@services.slug#">@services.name.ToUpperInvariant()</a></h3>
+
+                                @if (System.Web.HttpUtility.HtmlDecode(services.description).Length > 200)
+                                {
+                                    <p class="no-margin">@Html.Raw(System.Web.HttpUtility.HtmlDecode(services.description).Substring(0, 200))</p>
+                                }
+                                else
+                                {
+                                    <p class="no-margin">@Html.Raw(System.Web.HttpUtility.HtmlDecode(services.description))</p>
+                                }
+                                <span class="read-more"><a href="~/services/detail/@services.slug#">Read More...</a></span>
+                            </div>
+                        
+                        </article>
+                    </div>
+
+                }
+            }
+        </div>
+
+    </div>
+</section>

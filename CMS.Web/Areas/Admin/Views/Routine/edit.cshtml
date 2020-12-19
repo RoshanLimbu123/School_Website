@@ -1,0 +1,118 @@
+﻿@model CMS.Core.Dto.RoutineDto
+@{
+    ViewData["Title"] = "Update Routine";
+}
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/admin">Home</a>
+        </li>
+        <li>
+            Update Routine
+        </li>
+    </ul>
+</div>
+<div class="page-body">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <div class="widget radius-bordered">
+                        <div class="widget-header">
+                            <span class="widget-caption">UPDATE ROUTINE</span>
+                        </div>
+                        <div class="widget-body">
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="/admin/routine/edit">
+
+                                @Html.ValidationSummary(true)
+                                @Html.HiddenFor(a => a.routine_id)
+                                @Html.AntiForgeryToken()
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.title, " Name", new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(a => a.title, new { @class = "form-control" })
+
+                                    </div>
+
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.title)</p>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.class_id, new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        @Html.DropDownList("class_id", (SelectList)ViewBag.classes, new { @class = "form-control" })
+                                    </div>
+
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.class_id)</p>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.start_date, new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(a => a.start_date, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                                    </div>
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.start_date)</p>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.end_date, new { @class = "col-md-3 control-label" })
+                                    <div class="col-md-9">
+                                        <input asp-for="end_date" class="form-control" type="date" value="@DateTime.Now.ToString("2020-01-20")" />
+                                    </div>
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.end_date)</p>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.image, new { @class = "col-md-3 control-label" })
+                                    <div class="col-md-9">
+                                        <input type="file" value="Choose Image" name="image" id="image_name" />
+                                    </div>
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.image)</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input class="btn btn-palegreen pull-right" type="submit" value="Save" style="background-color:#2dc3e8" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-lg-offset-2 images-list" id="previewImg">
+                    <img id="image" class="image-preview" src="~/images/custom/@Model.image" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+    .image-preview {
+        height: 150px;
+        width: 140px;
+        float: right;
+    }
+</style>
+@section scripts{
+    <script>
+
+        $("#image_name").change(function () {
+            readURL(this);
+        });
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
+}

@@ -1,0 +1,802 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] -  Leading Edge  </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="~/adminside/css/AdminDashCss/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/adminside/css/AdminDashCss/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css">
+    <link href="~/adminside/css/Custom.css" rel="stylesheet" />
+    <link href="~/adminside/css/AdminDashCss/beyond.min.css" rel="stylesheet" />
+    <script src="~/adminside/js/AdminDashJs/skins.min.js"></script>
+    <link href="~/adminside/css/pagination.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="loading-container">
+        <div class="loader"></div>
+    </div>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-container">
+                <div class="navbar-header pull-left">
+
+                    <a href="/admin" class="navbar-brand">
+                        <small>
+                            <b>Leading Admin</b>
+                        </small>
+                    </a>
+                </div>
+                <div class="sidebar-collapse" id="sidebar-collapse">
+                    <i class="collapse-icon fa fa-bars"></i>
+                </div>
+                <div class="navbar-header pull-right">
+                    <div class="navbar-account">
+                        <ul class="account-area">
+                            <li>
+                                <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                                    <div class="avatar" title="View your public profile">
+                                        <img src="~/clientside/images/user.png" />
+                                    </div>
+                                    <section>
+                                        <h2><span class="profile"><span></span></span></h2>
+                                    </section>
+                                </a>
+                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+
+                                    <li class="dropdown-footer">
+                                        <a href="/account/login">
+                                            <i class="fa fa-lock"></i> Sign out
+                                        </a>
+                                    </li>
+                                </ul>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="copyright" style="position: absolute;right: 0;bottom:-90px;left:0;color:white;background-color:#2dc3e8;margin-left:65px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="text-center text-white">
+                        &copy; @DateTime.Now.Year LeadingEdgeSoftare. All Rights Reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="main-container container-fluid">
+        <div class="page-container">
+            <div class="page-sidebar" id="sidebar">
+                <ul class="nav sidebar-menu">
+                    <li>
+                        <a href="/" class="menu-dropdown">
+                            <i class="menu-icon fa fa-home"></i>
+                            <span class="menu-text"> Client </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin" class="menu-dropdown">
+                            <i class="menu-icon fa fa-home"></i>
+                            <span class="menu-text"> Dashboard </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/enquiry" class="menu-dropdown">
+                            <i class="menu-icon fa fa-home"></i>
+                            <span class="menu-text"> Enquiry </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/notice" class="menu-dropdown">
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text"> Notice </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a href="/admin/notice/new">
+                                    <span class="menu-text"> New Notice</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/notice">
+                                    <span class="menu-text">View Notice</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/admin/outlet" class="menu-dropdown">
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text"> Outlet </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a href="/admin/outlet/new">
+                                    <span class="menu-text"> New Outlet</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/outlet">
+                                    <span class="menu-text">View Outlet</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="" class="menu-dropdown">
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text"> Page Details </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+
+                        <ul class="submenu">
+
+                            <li>
+                                <a href="/admin/page-category" class="menu-dropdown">
+                                    <i class="menu-icon fa fa-bar-chart-o"></i>
+                                    <span class="menu-text"> Page Category </span>
+
+                                    <i class="menu-expand"></i>
+                                </a>
+
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="/admin/page-category/new">
+                                            <span class="menu-text">New Pages Category</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/admin/page-category">
+                                            <span class="menu-text"> View Pages Category</span>
+                                        </a>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/admin/page" class="menu-dropdown">
+                                    <i class="menu-icon fa fa-copy"></i>
+                                    <span class="menu-text"> Pages </span>
+
+                                    <i class="menu-expand"></i>
+                                </a>
+
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="/admin/page/new">
+                                            <span class="menu-text">New Pages</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/admin/page">
+                                            <span class="menu-text"> View Pages</span>
+                                        </a>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="/admin/franchise" class="menu-dropdown">
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text"> Franchise </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a href="/admin/franchise/new">
+                                    <span class="menu-text"> New Franchise</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/franchise">
+                                    <span class="menu-text">View Franchise</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="/admin/teacher" class="menu-dropdown">
+                            <i class=" menu-icon fa fa-user"></i>
+                            <span class="menu-text"> Teacher </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a href="/admin/teacher/new">
+                                    <span class="menu-text"> New Teacher</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/teacher">
+                                    <span class="menu-text">View Teacher</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+
+
+
+                    <li>
+                        <a href="/admin/blog" class="menu-dropdown">
+                            <i class="menu-icon fa fa-table"></i>
+                            <span class="menu-text"> Blogs </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a href="/admin/blog/new">
+                                    <span class="menu-text">New Blog</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/blog">
+                                    <span class="menu-text">View Blog</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/admin/partners" class="menu-dropdown">
+                            <i class=" menu-icon fa fa-users"></i>
+                            <span class="menu-text"> Partners </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a href="/admin/partners/new">
+                                    <span class="menu-text">New Partners</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/admin/partners">
+                                    <span class="menu-text">View Partners</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="/admin/events" class="menu-dropdown">
+                            <i class="menu-icon fa fa-bar-chart-o"></i>
+                            <span class="menu-text"> Events </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li>
+                                <a href="/admin/events/new">
+                                    <span class="menu-text">New Event</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/admin/events">
+                                    <span class="menu-text"> View Event</span>
+                                </a>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="" class="menu-dropdown">
+                            <i class="menu-icon fa fa-cogs"></i>
+                            <span class="menu-text"> Specialities Detail </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a href="/admin/specialities" class="menu-dropdown">
+                                    <i class="menu-icon fa fa-copy"></i>
+                                    <span class="menu-text"> Specialities </span>
+
+                                    <i class="menu-expand"></i>
+                                </a>
+
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="/admin/specialities/new">
+                                            <span class="menu-text">New Specialities</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/admin/specialities">
+                                            <span class="menu-text"> View Specialities</span>
+                                        </a>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/admin/specialities-category" class="menu-dropdown">
+                                    <i class="menu-icon fa fa-bar-chart-o"></i>
+                                    <span class="menu-text"> Specialities Category </span>
+
+                                    <i class="menu-expand"></i>
+                                </a>
+
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="/admin/specialities-category/new">
+                                            <span class="menu-text">New Category</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/admin/specialities-category">
+                                            <span class="menu-text"> View Category</span>
+                                        </a>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+
+                    <li>
+                        <a href="" class="menu-dropdown">
+                            <i class="menu-icon glyphicon glyphicon-picture"></i>
+                            <span class="menu-text"> Gallery Details </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+                        <ul class="submenu">
+
+                            <li>
+                                <a href="/admin/gallery" class="menu-dropdown">
+                                    <i class="menu-icon glyphicon glyphicon-list"></i>
+                                    <span class="menu-text"> Gallery </span>
+
+                                    <i class="menu-expand"></i>
+                                </a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="/admin/gallery/new">
+                                            <span class="menu-text">New Gallery</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/gallery">
+                                            <span class="menu-text">View Gallery</span>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="/admin/gallery-image" class="menu-dropdown">
+                                    <i class="menu-icon glyphicon glyphicon-picture"></i>
+                                    <span class="menu-text"> Gallery Image </span>
+
+                                    <i class="menu-expand"></i>
+                                </a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="/admin/gallery-image/new">
+                                            <span class="menu-text">New Image</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/gallery-image">
+                                            <span class="menu-text">View Image</span>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/admin/video" class="menu-dropdown">
+                                    <i class="menu-icon fa fa-bar-chart-o"></i>
+                                    <span class="menu-text"> Video </span>
+
+                                    <i class="menu-expand"></i>
+                                </a>
+
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="/admin/video/new">
+                                            <span class="menu-text">New Video</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/admin/video">
+                                            <span class="menu-text"> View Video</span>
+                                        </a>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="/admin/career" class="menu-dropdown">
+                            <i class="menu-icon fa fa-graduation-cap"></i>
+                            <span class="menu-text"> Careers </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+                        <ul class="submenu">
+
+                            <li>
+                                <a href="/admin/career/new">
+                                    <span class="menu-text">New Career</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/admin/career">
+                                    <span class="menu-text">View Career</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="/admin/testimonial" class="menu-dropdown">
+                            <i class="menu-icon fa fa-user"></i>
+                            <span class="menu-text"> Testimonials </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a href="/admin/testimonial/new">
+                                    <span class="menu-text">New Testimonial</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/admin/testimonial">
+                                    <span class="menu-text"> View Testimonial</span>
+                                </a>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="" class="menu-dropdown">
+                            <i class="menu-icon fa fa-cogs"></i>
+                            <span class="menu-text"> Setup </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+
+                        <ul class="submenu">
+
+
+
+
+                            <li>
+                                <a href="/admin/setup">
+                                    <i class="menu-icon glyphicon glyphicon-fire themesecondary"></i>
+                                    <span class="menu-text">
+                                        Organization Setup
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="/user-management/user" class="menu-dropdown">
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text"> User Management </span>
+
+                            <i class="menu-expand"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+
+
+                                <a href="/user-management/user">
+                                    <span class="menu-text"> Users</span>
+                                </a>
+                            </li>
+                            <!--
+                    <li>
+                        <a href="/user-management/role">
+                            <span class="menu-text">Role</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+               -->
+                        </ul>
+                </ul>
+            </div>
+
+            <div id="chatbar" class="page-chatbar">
+                <div class="chatbar-contacts">
+                    <div class="contacts-search">
+                        <input type="text" class="searchinput" placeholder="Search Contacts" />
+                        <i class="searchicon fa fa-search"></i>
+                        <div class="searchhelper">Search Your Contacts and Chat History</div>
+                    </div>
+                    <ul class="contacts-list">
+                        <li class="contact">
+                            <div class="contact-avatar">
+
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-name">Divyia Philips</div>
+                                <div class="contact-status">
+                                    <div class="online"></div>
+                                    <div class="status">online</div>
+                                </div>
+                                <div class="last-chat-time">
+                                    last week
+                                </div>
+                            </div>
+                        </li>
+                        <li class="contact">
+                            <div class="contact-avatar">
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-name">Adam Johnson</div>
+                                <div class="contact-status">
+                                    <div class="offline"></div>
+                                    <div class="status">left 4 mins ago</div>
+                                </div>
+                                <div class="last-chat-time">
+                                    today
+                                </div>
+                            </div>
+                        </li>
+                        <li class="contact">
+                            <div class="contact-avatar">
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-name">John Smith</div>
+                                <div class="contact-status">
+                                    <div class="online"></div>
+                                    <div class="status">online</div>
+                                </div>
+                                <div class="last-chat-time">
+                                    1:57 am
+                                </div>
+                            </div>
+                        </li>
+                        <li class="contact">
+                            <div class="contact-avatar">
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-name">Osvaldus Valutis</div>
+                                <div class="contact-status">
+                                    <div class="online"></div>
+                                    <div class="status">online</div>
+                                </div>
+                                <div class="last-chat-time">
+                                    today
+                                </div>
+                            </div>
+                        </li>
+                        <li class="contact">
+                            <div class="contact-avatar">
+
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-name">Javi Jimenez</div>
+                                <div class="contact-status">
+                                    <div class="online"></div>
+                                    <div class="status">online</div>
+                                </div>
+                                <div class="last-chat-time">
+                                    today
+                                </div>
+                            </div>
+                        </li>
+                        <li class="contact">
+                            <div class="contact-avatar">
+
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-name">Stephanie Walter</div>
+                                <div class="contact-status">
+                                    <div class="online"></div>
+                                    <div class="status">online</div>
+                                </div>
+                                <div class="last-chat-time">
+                                    yesterday
+                                </div>
+                            </div>
+                        </li>
+                        <li class="contact">
+                            <div class="contact-avatar">
+
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-name">Sergey Azovskiy</div>
+                                <div class="contact-status">
+                                    <div class="offline"></div>
+                                    <div class="status">offline since oct 24</div>
+                                </div>
+                                <div class="last-chat-time">
+                                    22 oct
+                                </div>
+                            </div>
+                        </li>
+                        <li class="contact">
+                            <div class="contact-avatar">
+
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-name">Lee Munroe</div>
+                                <div class="contact-status">
+                                    <div class="online"></div>
+                                    <div class="status">online</div>
+                                </div>
+                                <div class="last-chat-time">
+                                    today
+                                </div>
+                            </div>
+                        </li>
+                        <li class="contact">
+                            <div class="contact-avatar">
+                            </div>
+                            <div class="contact-info">
+                                <div class="contact-name">Divyia Philips</div>
+                                <div class="contact-status">
+                                    <div class="online"></div>
+                                    <div class="status">online</div>
+                                </div>
+                                <div class="last-chat-time">
+                                    last week
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="chatbar-messages" style="display: none;">
+                    <div class="messages-contact">
+                        <div class="contact-avatar">
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-name">Divyia Philips</div>
+                            <div class="contact-status">
+                                <div class="online"></div>
+                                <div class="status">online</div>
+                            </div>
+                            <div class="last-chat-time">
+                                a moment ago
+                            </div>
+                            <div class="back">
+                                <i class="fa fa-arrow-circle-left"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="messages-list">
+                        <li class="message">
+                            <div class="message-info">
+                                <div class="bullet"></div>
+                                <div class="contact-name">Me</div>
+                                <div class="message-time">10:14 AM, Today</div>
+                            </div>
+                            <div class="message-body">
+                                Hi, Hope all is good. Are we meeting today?
+                            </div>
+                        </li>
+                        <li class="message reply">
+                            <div class="message-info">
+                                <div class="bullet"></div>
+                                <div class="contact-name">Divyia</div>
+                                <div class="message-time">10:15 AM, Today</div>
+                            </div>
+                            <div class="message-body">
+                                Hi, Hope all is good. Are we meeting today?
+                            </div>
+                        </li>
+                        <li class="message">
+                            <div class="message-info">
+                                <div class="bullet"></div>
+                                <div class="contact-name">Me</div>
+                                <div class="message-time">10:14 AM, Today</div>
+                            </div>
+                            <div class="message-body">
+                                Hi, Hope all is good. Are we meeting today?
+                            </div>
+                        </li>
+                        <li class="message reply">
+                            <div class="message-info">
+                                <div class="bullet"></div>
+                                <div class="contact-name">Divyia</div>
+                                <div class="message-time">10:15 AM, Today</div>
+                            </div>
+                            <div class="message-body">
+                                Hi, Hope all is good. Are we meeting today?
+                            </div>
+                        </li>
+                        <li class="message">
+                            <div class="message-info">
+                                <div class="bullet"></div>
+                                <div class="contact-name">Me</div>
+                                <div class="message-time">10:14 AM, Today</div>
+                            </div>
+                            <div class="message-body">
+                                Hi, Hope all is good. Are we meeting today?
+                            </div>
+                        </li>
+                        <li class="message reply">
+                            <div class="message-info">
+                                <div class="bullet"></div>
+                                <div class="contact-name">Divyia</div>
+                                <div class="message-time">10:15 AM, Today</div>
+                            </div>
+                            <div class="message-body">
+                                Hi, Hope all is good. Are we meeting today?
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="send-message">
+                        <span class="input-icon icon-right">
+                            <textarea rows="4" class="form-control" placeholder="Type your message"></textarea>
+                            <i class="fa fa-camera themeprimary"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="page-content">
+                @Html.Partial("message")
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <script src="~/adminside/js/AdminDashJs/jquery.min.js"></script>
+    <script src="~/adminside/js/popper.min.js"></script>
+    <script src="~/adminside/js/bootstrap.min.js"></script>
+    <script src="~/adminside/js/AdminDashJs/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/adminside/js/AdminDashJs/beyond.min.js"></script>
+    <script src="~/adminside/js/custom.js"></script>
+    <script src="~/adminside/js/pagination-helper.min.js"></script>
+    <script src="~/js/tiny-mce/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: '.tiny-mce' });</script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

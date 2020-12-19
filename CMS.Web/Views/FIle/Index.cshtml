@@ -1,0 +1,91 @@
+﻿@model List<CMS.Core.Entity.Outlet>
+@{
+    ViewData["Title"] = "Files";
+
+    var imageFormats = new[] { ".jpeg", ".png", ".jpg" };
+
+    var docFormats = new[] { ".xls", ".xlsx" };
+
+    var pdfFormats = new[] { ".pdf" };
+
+    var powerPointFormats = new[] { ".ppt", ".pptx" };
+
+}
+
+    <section class="page-title-section " data-overlay-dark="7" style="background-image: url(https://64.media.tumblr.com/c9e620b709e7d2b0d929665a7b1380fd/1c601eb4962b2321-4e/s500x750/05025ea8e680e655acdaeb37d7b392d0f1c83103.gifv)">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-7 col-sm-12">
+                    <h1>Outlet</h1>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <ul class="text-right xs-text-left sm-margin-8px-top xs-margin-5px-top">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="">File</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+<div class="page-content" style="margin-left:100px;margin-bottom:80px;margin-top:70px;">
+    <div class="row page-row">
+        @{ foreach (var file in Model)
+            {
+
+                <div class="col-md-2 col-12 text-center" style="border:1px solid green; border-radius:15px; margin:15px; margin-right:80px; padding:15px;">
+                    <div class="album-view">
+                        <a href="/images/custom/@file.file_name" target="_blank"><img class="img-fluid" src="@getImage(file.file_name)" alt="@file.title" /></a>
+                        <div class="desc">
+                            @if (isImageFile(file.file_name))
+                            {
+                                <h4><small><a href="images/custom/@file.file_name" data-toggle="lightbox" data-title="@file.title" data-footer="@file.description">@file.title</a></small></h4>
+                            }
+                            <p>@Html.Raw(file.description)</p>
+                        </div>
+                    </div>
+                </div>
+                if (isImageFile(file.file_name))
+                {
+                    @:</a>
+                }
+
+            }
+        }
+    </div><!--//page-row-->
+
+</div><!--//page-content-->
+
+
+@{
+
+    string getImage(string file_name)
+    {
+        var extension = System.IO.Path.GetExtension(file_name).ToLower();
+
+        if (imageFormats.Contains(extension))
+        {
+            return "/images/custom/" + file_name;
+        }
+
+        if (docFormats.Contains(extension))
+        {
+            return "/images/doc.png";
+        }
+
+        if (pdfFormats.Contains(extension))
+        {
+            return "/images/pdf.png";
+        }
+
+        return "/images/ppt.png";
+    }
+
+    bool isImageFile(string file_name)
+    {
+        var extension = System.IO.Path.GetExtension(file_name).ToLower();
+
+        return imageFormats.Contains(extension);
+    }
+}

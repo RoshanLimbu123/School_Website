@@ -1,0 +1,573 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>259f2728-018e-4ca6-85a4-0e03b146032b</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Core\**" />
+    <Content Remove="Areas\Core\**" />
+    <EmbeddedResource Remove="Areas\Core\**" />
+    <None Remove="Areas\Core\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
+    <PackageReference Include="AutoMapper" Version="8.1.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\User-management\Data\" />
+    <Folder Include="wwwroot\clientside\css\NewHopeCss\" />
+    <Folder Include="wwwroot\clientside\js\User\" />
+    <Folder Include="wwwroot\css\User\" />
+    <Folder Include="wwwroot\js\User\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\adminside\css\Login\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\adminside\css\Login\fonts\materialdesignicons-webfont.woff2" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\bootstrap\bootstrap.min.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\bootstrap\bootstrap.min_2.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\bootstrap\bootstrap.min_3.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\countdown\jquery.downCount.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\countdown\jquery.downCount_2.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\countdown\jquery.downCount_3.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\counter\jquery.countTo.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\counter\jquery.countTo_2.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\counter\jquery.countTo_3.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\jarallax\jarallax-video.min.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\jarallax\jarallax-video.min_2.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\jarallax\jarallax-video.min_3.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\jarallax\jarallax.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\jarallax\jarallax.min.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\jarallax\jarallax.min_2.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\jarallax\jarallax.min_3.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\jarallax\jarallax_2.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\jarallax\jarallax_3.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\magnific-popup\jquery.magnific-popup.min.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\magnific-popup\jquery.magnific-popup.min_2.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\magnific-popup\jquery.magnific-popup.min_3.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\owl-carousel\owl.carousel.min.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\owl-carousel\owl.carousel.min_2.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\owl-carousel\owl.carousel.min_3.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\popper\popper.min.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\popper\popper.min_2.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\popper\popper.min_3.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\select2\select2.full.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\select2\select2.full_2.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\select2\select2.full_3.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\shuffle\shuffle.min.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\shuffle\shuffle.min_2.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\shuffle\shuffle.min_3.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\swiperanimation\SwiperAnimation.min.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\swiperanimation\SwiperAnimation.min_2.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\swiperanimation\SwiperAnimation.min_3.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\swiper\swiper.min.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\swiper\swiper.min_2.js" />
+    <None Include="wwwroot\clientside\js\NewHopeJs\swiper\swiper.min_3.js" />
+    <None Include="wwwroot\fonts\School\fonts\.DS_Store" />
+    <None Include="wwwroot\fonts\School\fonts\bootstrap\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\fonts\School\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\fonts\School\fonts\icomoon\.DS_Store" />
+    <None Include="wwwroot\fonts\School\fonts\icomoon\icomoon.svg" />
+    <None Include="wwwroot\js\tiny-mce\langs\readme.md" />
+    <None Include="wwwroot\js\tiny-mce\plugins\advlist\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\anchor\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\autolink\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\autoresize\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\autosave\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\bbcode\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\charmap\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\code\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\colorpicker\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\contextmenu\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\directionality\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\emoticons\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\example\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\example_dependency\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\fullpage\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\fullscreen\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\hr\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\imagetools\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\image\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\importcss\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\insertdatetime\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\layer\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\legacyoutput\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\link\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\lists\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\media\moxieplayer.swf" />
+    <None Include="wwwroot\js\tiny-mce\plugins\media\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\nonbreaking\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\noneditable\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\pagebreak\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\paste\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\preview\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\print\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\save\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\searchreplace\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\spellchecker\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\tabfocus\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\table\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\template\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\textcolor\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\textpattern\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\visualblocks\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\visualchars\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\plugins\wordcount\plugin.min.js" />
+    <None Include="wwwroot\js\tiny-mce\skins\lightgray\fonts\tinymce-small.svg" />
+    <None Include="wwwroot\js\tiny-mce\skins\lightgray\fonts\tinymce.svg" />
+    <None Include="wwwroot\js\tiny-mce\themes\modern\theme.min.js" />
+    <None Include="wwwroot\scss\Schoolscss\.DS_Store" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_alerts.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_background-variant.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_border-radius.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_buttons.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_center-block.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_clearfix.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_forms.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_gradients.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_grid-framework.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_grid.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_hide-text.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_image.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_labels.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_list-group.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_nav-divider.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_nav-vertical-align.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_opacity.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_pagination.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_panels.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_progress-bar.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_reset-filter.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_reset-text.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_resize.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_responsive-visibility.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_size.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_tab-focus.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_table-row.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_text-emphasis.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_text-overflow.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\mixins\_vendor-prefixes.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_alerts.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_badges.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_breadcrumbs.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_button-groups.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_buttons.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_carousel.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_close.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_code.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_component-animations.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_dropdowns.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_forms.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_glyphicons.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_grid.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_input-groups.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_jumbotron.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_labels.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_list-group.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_media.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_mixins.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_modals.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_navbar.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_navs.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_normalize.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_pager.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_pagination.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_panels.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_popovers.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_print.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_progress-bars.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_responsive-embed.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_responsive-utilities.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_scaffolding.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_tables.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_theme.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_thumbnails.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_tooltip.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_type.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_utilities.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_variables.scss" />
+    <None Include="wwwroot\scss\Schoolscss\bootstrap\_wells.scss" />
+    <None Include="wwwroot\scss\Schoolscss\style.scss" />
+    <None Include="wwwroot\scss\Schoolscss\_bootstrap-compass.scss" />
+    <None Include="wwwroot\scss\Schoolscss\_bootstrap-mincer.scss" />
+    <None Include="wwwroot\scss\Schoolscss\_bootstrap-sprockets.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\cms-user\Cafe.User\Cafe.User.csproj" />
+    <ProjectReference Include="..\CMS.Core\CMS.Core\CMS.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\User-management\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\User-management\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_AdminLayout.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="wwwroot\adminside\css\Login\fonts\fontawesome-webfont.woff2">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\css\pagination.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\Admin\site.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\Admin\site.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\Admin\waves.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\jsnew\active.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\jsnew\bootstrap.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\jsnew\classynav.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\jsnew\gulpfile.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\jsnew\jarallax-video.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\jsnew\jarallax.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\jsnew\jquery.magnific-popup.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\jsnew\jquery.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\jsnew\jquery.scrollup.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\jsnew\jquery.sticky.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\jsnew\owl.carousel.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\jsnew\popper.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\jsnew\wow.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\plugins\backstretch\jquery.backstretch.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\plugins\countdown\countdown.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\plugins\countdown\jquery.downCount.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\plugins\magnific-popup\jquery.magnific-popup.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\plugins\magnific-popup\magnific-popup.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\plugins\owl-carousel\owl.carousel.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\plugins\owl-carousel\owl.carousel.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\plugins\owl-carousel\owl.theme.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\plugins\shuffle\jquery.shuffle.modernizr.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\langs\readme.md">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\license.txt">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\advlist\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\anchor\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\autolink\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\autoresize\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\autosave\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\bbcode\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\charmap\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\code\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\colorpicker\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\contextmenu\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\directionality\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-cool.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-cry.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-embarassed.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-foot-in-mouth.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-frown.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-innocent.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-kiss.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-laughing.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-money-mouth.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-sealed.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-smile.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-surprised.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-tongue-out.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-undecided.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-wink.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\img\smiley-yell.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\emoticons\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\example\dialog.html">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\example\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\example_dependency\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\fullpage\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\fullscreen\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\hr\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\imagetools\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\image\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\importcss\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\insertdatetime\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\layer\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\legacyoutput\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\link\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\lists\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\media\moxieplayer.swf">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\media\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\nonbreaking\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\noneditable\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\pagebreak\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\paste\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\preview\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\print\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\save\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\searchreplace\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\spellchecker\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\tabfocus\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\table\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\template\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\textcolor\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\textpattern\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\visualblocks\css\visualblocks.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\visualblocks\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\visualchars\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\plugins\wordcount\plugin.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\content.inline.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\content.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\fonts\tinymce-small.eot">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\fonts\tinymce-small.svg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\fonts\tinymce-small.ttf">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\fonts\tinymce-small.woff">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\fonts\tinymce.eot">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\fonts\tinymce.svg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\fonts\tinymce.ttf">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\fonts\tinymce.woff">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\img\anchor.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\img\loader.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\img\object.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\img\trans.gif">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\skin.ie7.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\skins\lightgray\skin.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\themes\modern\theme.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\clientside\js\tiny-mce\tinymce.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Images\user.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\img\user.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

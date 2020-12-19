@@ -1,0 +1,66 @@
+﻿@model CMS.Web.ViewModels.CourseViewModel
+@{
+    ViewData["Title"] = "Course";
+}
+
+
+
+<!-- ******CONTENT****** -->
+
+        <section class="inner-banner bg-overlay-black-70 bg-holder" style="background-image: url('images/bg/06.jpg');">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <h1 class="text-white">Courses</h1>
+                        </div>
+                        <div class="d-flex justify-content-center ">
+                            <ol class="breadcrumb mb-0 p-0">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active"><span>Courses</span></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="page-content">
+          
+            <div class="row page-row">
+                @{
+                    foreach (var course in Model.courses)
+                    {
+                        <div class="col-md-3 col-12 text-center">
+
+                            <div class="album-cover">
+                                @{
+                                    var imgSrc = "/images/";
+                                    if (string.IsNullOrWhiteSpace(course.file_name))
+                                    {
+                                        imgSrc += "A_blank_flag.png";
+                                    }
+                                    else
+                                    {
+                                        imgSrc += "custom/" + course.file_name;
+                                    }
+                                }
+                                <img class="img-fluid" src="@imgSrc" alt="" />
+                                <div class="desc">
+
+                                    <h4><small>@course.name.ToUpperInvariant()</small></h4>
+                                    <a class="btn btn-theme read-more" href="~/course/detail/@course.slug#">Read more<i class="fas fa-chevron-right"></i></a>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                }
+
+
+
+            </div><!--//page-row-->
+            
+        </div><!--//page-content-->
+    </div><!--//page-->
+</div><!--//content-->

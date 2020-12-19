@@ -1,0 +1,61 @@
+﻿@model List<CMS.Core.Entity.Video>
+@{
+    ViewData["Title"] = "Video";
+}
+
+
+<div class="wshipping-content-block wshipping-breadcroumb inner-bg-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <h1>Videos</h1>
+                <a href="index_2.htm" title="Home">Home</a> /Videos
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Breadcroumbs end -->
+<!-- Freight Gallery Start -->
+<div class="gallery-filtariz">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 offset-lg-3">
+                <div class="section-title wow fadeInUp">
+                    <h2>Videos</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <!-- start portfolio gallery -->
+                <div class="gallery text-center form-row">
+                    @{ foreach (var video in Model)
+                        {
+                            <div class="col-lg-4 col-md-6 margin-30px-bottom items design"style="margin-left:60px;margin-bottom:60px;">
+                                <div class="project-grid-style2">
+                                    <div class="project-details">
+                                        <h3 class="heading3-border text-uppercase">@video.title</h3>
+
+                                        <iframe width="300" height="180" src="@String.Concat("https://www.youtube.com/embed/", video.video_url)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                     
+                                    </div>
+                                    <div class="portfolio-title">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+                <!-- end portfolio gallery -->
+
+            </div>
+
+        </div>
+    </div>
+
+

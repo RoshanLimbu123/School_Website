@@ -1,0 +1,101 @@
+﻿@model CMS.Web.Areas.Core.ViewModels.BlogCommentIndexViewModel;
+@{
+    ViewData["Title"] = "Blog Comment";
+
+    var list = new List<SelectListItem>() {
+new SelectListItem { Text = "10", Value = "10"},
+new SelectListItem { Text = "20", Value = "20" },
+new SelectListItem { Text = "30", Value = "30" },
+new SelectListItem { Text = "40", Value = "40"},
+new SelectListItem { Text = "50", Value = "50" }
+};
+}
+
+
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/admin">Home</a>
+        </li>
+
+        <li class="active">Blog Comment</li>
+    </ul>
+</div>
+<div class="page-body">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="widget">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="widget">
+                            <div class="widget-header ">
+                                <span class="widget-caption">VIEW BLOG-COMMENT</span>
+                                <div class="widget-buttons">
+                                    <a href="tables-data.html#" data-toggle="maximize">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                    <a href="tables-data.html#" data-toggle="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </a>
+                                    <a href="tables-data.html#" data-toggle="dispose">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <div class="table-toolbar">
+                                    <form action="/admin/blog" method="get" class="row col-sm-push">
+                                  
+                                    </form>
+                                </div>
+                                <table class="table m-0">
+                                    <thead class="bg-custom text-white">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Comment By</th>
+                                            <th>Comment Date</th>
+                                            <th>Email</th>
+                                            <th>Commment</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            var sn = 1;
+                                            foreach (var blogcomment in Model.blog_details)
+                                            {
+                                                <tr>
+                                                    <td>@sn</td>
+                                                    <td>@blogcomment.comment_by</td>
+                                                    <td>@blogcomment.comment_date.ToString("yyyy-MM-dd")</td>
+                                                    <td>@blogcomment.email</td>
+                                                    <td>@Html.Raw(blogcomment.comments)</td>
+
+
+
+                                                    <td>
+
+
+
+                                                        <a href="/admin/blog/blogCommentEdit/@blogcomment.blog_comment_id" class="btn btn-icon waves-effect waves-light btn-primary btn-sm" data-toggle="tooltip" title="Update Blog Comment"><i class="fa fa-edit"></i></a>
+
+
+                                                        <a href="/admin/blog/blogCommentDelete/@blogcomment.blog_comment_id" class="btn btn-icon waves-effect waves-light btn-danger btn-sm delete" data-toggle="tooltip" title="Delete Blog Comment"><i class="fa fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                sn++;
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                               
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

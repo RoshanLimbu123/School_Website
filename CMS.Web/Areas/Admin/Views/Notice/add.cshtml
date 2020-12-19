@@ -1,0 +1,105 @@
+﻿@model CMS.Core.Dto.NoticeDto
+@{
+    ViewData["Title"] = "New Notice";
+}
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/admin">Home</a>
+        </li>
+        <li class="active">Notice</li>
+    </ul>
+</div>
+
+<div class="page-body">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <div class="widget radius-bordered">
+                        <div class="widget-header">
+                            <span class="widget-caption">NEW NOTICE</span>
+                        </div>
+                        <div class="widget-body">
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data">
+
+                                @Html.ValidationSummary(true)
+
+                                @Html.AntiForgeryToken()
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.title, new { @class = "col-md-3 control-label" })
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(a => a.title, new { @class = "form-control" })
+                                    </div>
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.title)</p>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.notice_expiry_date, new { @class = "col-md-3 control-label" })
+                                    <div class="col-md-9">
+                                        <input asp-for="notice_expiry_date" class="form-control" type="date" value="@DateTime.Now.AddDays(7).ToString("yyyy-MM-dd")" />
+                                    </div>
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.notice_expiry_date)</p>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.description, new { @class = "col-md-3 control-label" })
+                                    <div class="col-md-9">
+                                        @Html.TextAreaFor(a => a.description, new { @class = "form-control textarea tiny-mce" })
+                                    </div>
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.description)</p>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.image_name, new { @class = "col-md-3 control-label" })
+                                    <div class="col-md-9">
+                                        <input type="file" value="Choose File" name="file" id="file" />
+                                    </div>
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.image_name)</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input class="btn btn-palegreen pull-right" type="submit" value="Save" style="background-color:#2dc3e8" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-lg-offset-2  images-list" id="previewImg">
+                    <img id="image" class="image-preview" src="#" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .image-preview {
+        height: 150px;
+        width: 140px;
+        float: right;
+    }
+</style>
+@section scripts{
+    <script>
+
+        $("#file").change(function () {
+            readURL(this);
+        });
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
+}
+

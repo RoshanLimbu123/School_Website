@@ -1,0 +1,137 @@
+﻿@model CMS.Core.Dto.CoursesDto
+@{
+    ViewData["Title"] = "New Course";
+}
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/admin">Home</a>
+        </li>
+        <li>
+           Course
+        </li>
+    </ul>
+</div>
+
+<div class="page-body">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <div class="widget radius-bordered">
+                        <div class="widget-header">
+                            <span class="widget-caption">Registration Form</span>
+                        </div>
+                        <div class="widget-body">
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data">
+
+                                @Html.ValidationSummary(true)
+
+                                @Html.AntiForgeryToken()
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.name, new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(a => a.name, new { @class = "form-control" })
+
+                                    </div>
+
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.name)</p>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.faculty_id, new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        @Html.DropDownListFor(a => a.faculty_id, ViewBag.faculty as SelectList, new { @class = "form-control" })
+                                    </div>
+
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.faculty_id)</p>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.description, new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        @Html.TextAreaFor(a => a.description, new { @class = "form-control tiny-mce" })
+                                    </div>
+
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.description)</p>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.features, new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        @Html.TextAreaFor(a => a.features, new { @class = "form-control tiny-mce" })
+                                    </div>
+
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.features)</p>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.specification, new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        @Html.TextAreaFor(a => a.specification, new { @class = "form-control tiny-mce" })
+                                    </div>
+
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.specification)</p>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.file_name, new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        <input type="file" value="Choose Image" name="file" id="file" />
+                                    </div>
+
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.file_name)</p>
+                                </div>
+                              
+                                <div class="form-group">
+                                    <div class="col-lg-offset-6 col-lg-8">
+                                        <input class="btn btn-palegreen" type="submit" value="Save" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-lg-offset-2  images-list" id="previewImg">
+                    <img id="image" class="image-preview" src="#" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .image-preview {
+        height: 150px;
+        width: 140px;
+        float: right;
+    }
+</style>
+@section scripts{
+    <script>
+
+        $("#file").change(function () {
+            readURL(this);
+        });
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
+}
+
+

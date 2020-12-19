@@ -1,0 +1,105 @@
+﻿@model CMS.Core.Dto.ServicesDto
+@{
+    ViewData["Title"] = "Update Service";
+}
+
+@{
+    Model.description = System.Web.HttpUtility.HtmlDecode(Model.description);
+}
+
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/admin">Home</a>
+        </li>
+        <li>
+            Update Service
+        </li>
+    </ul>
+</div>
+<div class="page-body">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-lg-10 col-sm-10 col-xs-10">
+                    <div class="widget radius-bordered">
+                        <div class="widget-header">
+                            <span class="widget-caption">Update Services</span>
+                        </div>
+                        <div class="widget-body">
+                            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="/admin/services/edit">
+                                @Html.ValidationSummary(true)
+
+                                @Html.AntiForgeryToken()
+
+                                @Html.HiddenFor(a => a.service_id)
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.name, new { @class = "col-md-2 control-label asterik" })
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(a => a.name, new { @class = "form-control" })
+                                        <p class="text-danger">@Html.ValidationMessageFor(a => a.name)</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.description, new { @class = "col-md-2 control-label asterik" })
+                                    <div class="col-md-8">
+                                        @Html.TextAreaFor(a => a.description, new { @class = "form-control tiny-mce", @rows = "15" })
+                                        <p class="text-danger">@Html.ValidationMessageFor(a => a.description)</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.image, new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-6">
+                                        <input type="file" value="Choose File" name="file" id="file" />
+                                        <p class="text-danger">@Html.ValidationMessageFor(a => a.image)</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input class="btn btn-palegreen pull-right" type="submit" value="Update" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 images-list" id="previewImg">
+                    <img id="image" class="image-preview" src="~/images/custom/@Model.image" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .image-preview {
+        height: 150px;
+        width: 150px;
+        float: right;
+    }
+</style>
+@section scripts{
+    <script>
+
+        $("#file").change(function () {
+            readURL(this);
+        });
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
+}
+

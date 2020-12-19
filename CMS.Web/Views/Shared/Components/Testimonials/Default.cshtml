@@ -1,0 +1,104 @@
+﻿@model List<CMS.Core.Entity.Testimonial>
+
+@{
+    int pagesCount = (int)Math.Ceiling(Convert.ToDecimal(Model.Count) / 3M);
+    int sn = 1;
+    bool isActive = sn == 1;
+
+    int currentPosition = 0;
+}
+
+@if (Model.Count > 0)
+{
+
+    <section class="section-area section-testimonials">
+        <!-- Nested Container Starts -->
+        <div class="container text-xs-center text-sm-center text-md-left">
+            <h4 class="main-heading-1 text-spl-color text-center text-weight-normal">Testimonials</h4>
+            <!-- Carousel Starts -->
+            <div id="carousel-testimonials" class="carousel slide" data-ride="carousel">
+                <!-- Wrapper For Slides Starts -->
+                <div class="carousel-inner text-xs-center text-sm-center text-md-left">
+
+                    @{
+                        for (int i = 0; i < pagesCount; i++)
+                        {
+                            string activeClass = i==0 ? "active" : "";
+
+                            <text>
+                                <div class="carousel-item @activeClass">
+                                    <div class="row">
+                                        @{
+                                        for (int j = 1; j <= 3; j++)
+                                        {
+                                            if (currentPosition != Model.Count)
+                                            {
+                                                var testimonial = Model.ElementAt(currentPosition);
+                                                <text><div class="col-md-4 col-sm-12">
+                                                    <div class="testimonial-box">
+                                                        <p class="text-weight-light">
+                                                            @Html.Raw(testimonial.statement)
+                                                        </p>
+                                                        <ul class="list-unstyled clearfix">
+                                                            <li class="float-md-left">
+                                                                @{
+                                                                var imgSrc = "/images/";
+                                                                if (string.IsNullOrWhiteSpace(testimonial.image_name))
+                                                                {
+                                                                    imgSrc += "A_blank_flag.png";
+                                                                }
+                                                                else
+                                                                {
+                                                                    imgSrc += "custom/" + testimonial.image_name;
+                                                                }
+                                                                }
+                                                                <img src="@imgSrc" alt="@testimonial.person_name" class="img-fluid img-center-sm img-center-xs circle">
+                                                            </li>
+                                                            <li class="float-md-left">
+                                                                <h6 class="text-spl-color text-weight-medium">@testimonial.person_name</h6>
+                                                                <span class="text-grey-color text-weight-light">@testimonial.designation</span><br />
+                                                                <span class="text-grey-color text-weight-light">@testimonial.associated_company_name</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div></text>
+
+                            currentPosition++;
+                        }
+                        else { break; }
+                    }
+                                        }
+
+                                    </div>
+                                    <!-- Nested Row Ends -->
+                                </div>
+                                </text>
+
+                                sn++;
+                            }
+                    }
+
+                </div>
+                <!-- Wrapper For Slides Ends -->
+                <!-- Indicators Starts -->
+                <ol class="carousel-indicators">
+                    @{
+                        for (int i = 0; i < pagesCount; i++)
+                        {
+                            string activeClass = "";
+                            if (i == 0)
+                            {
+                                activeClass = "active";
+                            }
+                            <li data-target="#carousel-testimonials" data-slide-to="@i" class="@activeClass circle"></li>
+                        }
+                    }
+                </ol>
+                <!-- Indicators Ends -->
+            </div>
+            <!-- Carousel Ends -->
+        </div>
+        <!-- Nested Container Ends -->
+    </section>
+}
+

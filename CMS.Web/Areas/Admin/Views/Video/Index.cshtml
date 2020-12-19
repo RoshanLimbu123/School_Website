@@ -1,0 +1,168 @@
+﻿@model CMS.Web.Areas.Admin.ViewModels.VideoIndexViewModel;
+@{
+    ViewData["Title"] = "Video";
+
+    var list = new List<SelectListItem>() {
+new SelectListItem { Text = "10", Value = "10"},
+new SelectListItem { Text = "20", Value = "20" },
+new SelectListItem { Text = "30", Value = "30" },
+new SelectListItem { Text = "40", Value = "40"},
+new SelectListItem { Text = "50", Value = "50" }
+};
+}
+
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/admin">Home</a>
+        </li>
+
+        <li class="active">Video</li>
+    </ul>
+</div>
+
+<div class="page-body">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="widget">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="widget">
+                            <div class="widget-header ">
+                                <span class="widget-caption">VIEW VIDEO</span>
+                                <div class="widget-buttons">
+                                    <a href="tables-data.html#" data-toggle="maximize">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                    <a href="tables-data.html#" data-toggle="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </a>
+                                    <a href="tables-data.html#" data-toggle="dispose">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <a href="/admin/video/new" class="btn btn-icon waves-effect waves-light btn-success btn-sm"><i class="fa fa-plus"></i> Add Video</a>
+
+                                <div class="table-toolbar">
+                                    <form action="/admin/video" method="get" class="row col-sm-push">
+
+                                        <div class="col-sm-6">
+                                            @Html.TextBox("title", "", new { @class = "form-control no-padding", placeholder = "Title" })
+                                        </div>
+                                        <div class="col-sm-3">
+                                            @Html.DropDownList("number_of_rows", list, new { @class = "form-control pull-right" })
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button type="submit" class="btn btn-primary waves-effect w-md waves-light" style="margin-left:5px;">Load <i class="fa fa-spinner "></i></button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <table class="table table-striped table-hover table-bordered" id="editabledatatable">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>Title</th>
+                                            <th>Video Url</th>
+                                            <th>Description</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            foreach (var video in Model.videodetails)
+                                            {
+                                                string status = "Home Video";
+                                                string background = "primary";
+                                                if(video.is_home_video==false)
+                                                {
+                                                    status = "Disabled";
+                                                    background = "danger";
+                                                }
+                                                <tr>
+                                                    <td>@video.title</td>
+                                                    <td>
+                                                        <div class="embed-responsive embed-responsive-16by9 mb-2">
+                                                            <iframe class="embed-responsive-item" data-toggle="modal" data-target="#modal4" src="@String.Concat("https://www.youtube.com/embed/", video.video_url)" allowfullscreen></iframe>
+                                                        </div>
+                                                    </td>
+                                                    <td>@video.description</td>
+                                                    <td>
+
+                                                        @{
+                                                            if (video.is_enabled)
+                                                            {
+                                                                <label class="badge badge-primary">Enabled</label>
+                                                            }
+                                                            else
+                                                            {
+                                                                <label class="badge badge-danger">Disabled</label>
+                                                            }
+                                                            if (video.is_home_video)
+                                                            {
+                                                                <label class="badge badge-@background">@status</label>
+                                                            }
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <a class="btn btn-primary " href="javascript:void(0);">Actions</a>
+                                                            <a class="btn btn-primary  dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+                                                            <ul class="dropdown-menu dropdown-primary">
+                                                                <li>
+                                                                    <a href="/admin/video/edit/@video.video_id">Edit</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/admin/video/delete/@video.video_id" class="delete">Delete</a>
+                                                                </li>
+                                                                <li>
+                                                                    @{
+                                                                        if (video.is_enabled)
+                                                                        {
+                                                                            <a href="/admin/video/disable/@video.video_id">Disable</a>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <a href="/admin/video/enable/@video.video_id">Enable</a>
+                                                                        }
+                                                                    }
+                                                                </li>
+                                                                @{
+                                                                    if (video.is_home_video == false)
+                                                                    {
+                                                                        <li>
+                                                                            <a href="~/admin/video/make-home-video/@video.video_id">Make Home Video</a>
+                                                                        </li>
+                                                                    }
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                                <LeadingEdgePager info="@ViewBag.pagerInfo"></LeadingEdgePager>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('.delete').on('click', function () {
+            if (!confirm("Are you sure to delete?")) {
+                event.preventDefault();
+            }
+        });
+    </script>
+}

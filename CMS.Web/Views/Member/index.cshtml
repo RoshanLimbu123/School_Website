@@ -1,0 +1,87 @@
+﻿@model List<CMS.Core.Entity.Member>
+@{
+    ViewData["Title"] = "Members";
+}
+
+
+    <section class="page-title-section " data-overlay-dark="7" style="background-image: url(https://64.media.tumblr.com/c9e620b709e7d2b0d929665a7b1380fd/1c601eb4962b2321-4e/s500x750/05025ea8e680e655acdaeb37d7b392d0f1c83103.gifv)">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-7 col-sm-12">
+                    <h1>Our Team</h1>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <ul class="text-right xs-text-left sm-margin-8px-top xs-margin-5px-top">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">Our Team</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+<section class="bg-light-gray">
+    <div class="container">
+
+        <div class="row">
+            @{
+                foreach (var member in ViewBag.members)
+                {
+                    <div class="col-lg-6 sm-padding-15px-lr margin-bottom-10 card-body ">
+                        <div class="team-block bg-white">
+                            <div class="row no-gutters">
+                                <div class=" col-sm-6 order-2 order-sm-1">
+                                                <div class="padding-25px-tb padding-30px-lr height-100 border border-color-light-black">
+                                                    @if (member.Designation.name != null)
+                                                    {
+                                                        <h6 class="font-size14 md-font-size13 sm-font-size12 text-theme-color letter-spacing-2 margin-5px-bottom">@member.Designation.name</h6>
+                                                    }
+                                                    <h5 class="font-size18 md-font-size16 xs-font-size14 font-weight-600 margin-5px-bottom">@member.full_name.ToUpperInvariant()</h5>
+                                                    @{
+                                                        if (member.description != null)
+                                                        {
+                                                            <p>@member.description</p>
+                                                            }
+                                                        }
+                                                            @{
+                                                                if (member.is_contact_enabled == true)
+                                                                {
+                                                                    <h6 class="font-size14 md-font-size13 sm-font-size12 text-theme-color letter-spacing-2 margin-5px-bottom">Contact: @member.contact_number</h6>
+                                                                }
+                                                            }
+
+                                                            @if (member.address != null)
+                                                            {
+                                                                <h6 class="font-size14 md-font-size13 sm-font-size12 text-theme-color letter-spacing-2 margin-5px-bottom">Address: @member.address</h6>
+                                                            }
+
+                                                        </div>
+                                </div>
+                                <div class=" col-sm-6 order-1 order-sm-2">
+                                    @{
+                                        var imgSrc = "/images/";
+                                        if (string.IsNullOrWhiteSpace(member.image_url))
+                                        {
+                                            imgSrc = "/img/user.png";
+                                        }
+                                        else
+                                        {
+                                            imgSrc += "custom/" + member.image_url;
+                                        }
+                                    }
+                                    <div class="team-block-img xs-text-center cover-background box-shadow-primary h-100"><img src="@imgSrc" alt="img" style="height:370px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
+
+        </div>
+
+    </div>
+</section>

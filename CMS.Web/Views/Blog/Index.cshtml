@@ -1,0 +1,108 @@
+﻿@model List<CMS.Core.Entity.Blog>
+@{
+    ViewData["Title"] = "Blogs";
+}
+@{
+
+    var setups = (List<CMS.Core.Entity.Setup>)ViewBag.setup;
+
+    var contactNo = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getPhoneNumberKey).SingleOrDefault()?.value;
+
+    var orgName = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getOrganisationNameKey).SingleOrDefault()?.value;
+
+    var panNo = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getPanNumberKey).SingleOrDefault()?.value;
+
+    var email = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getEmailKey).SingleOrDefault()?.value;
+
+    var address = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getAddressKey).SingleOrDefault()?.value;
+
+    var facebookUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getFacebookKey).SingleOrDefault()?.value;
+
+    var instaUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getInstaKey).SingleOrDefault()?.value;
+
+    var TwitterUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getTwitterKey).SingleOrDefault()?.value;
+
+    var companyDescription = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getCompanyShortDescriptionKey).SingleOrDefault()?.value;
+
+}
+
+
+
+
+<div class="wshipping-content-block wshipping-breadcroumb inner-bg-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <h1>Blog</h1>
+                <a href="/" title="Home">Home</a> / Blog
+            </div>
+          
+        </div>
+    </div>
+</div>
+<div style="margin-top: 50px;"></div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="row">
+                @{
+                  
+
+                    @foreach (var blog in Model)
+                    {
+                        <div class="col-12 col-lg-4">
+                            <div class="blog-item wow fadeInUp">
+                                @{
+                                    var imgSrc = "/images/";
+                                    if (string.IsNullOrWhiteSpace(blog.image_name))
+                                    {
+                                        imgSrc = "/img/user.png";
+                                    }
+                                    else
+                                    {
+                                        imgSrc += "custom/" + blog.image_name;
+                                    }
+                                }
+                                <img src="@imgSrc" alt="image" style="width:100%;">
+
+
+
+                                <div class="blog-content">
+                                    <h3>@blog.title</h3>
+                                    <div class="blog-post-by">
+                                        <ul>
+                                            <li><i class="fa fa-calendar"></i>@blog.posted_on.ToString("dd / MMM")</li>
+                                            <li><i class="fa fa-user"></i>By @blog.artical_by</li>
+                                        </ul>
+                                    </div>
+                                    @if (System.Web.HttpUtility.HtmlDecode(blog.description).Length > 300)
+                                    {
+                                        <p class="no-margin">@Html.Raw(System.Web.HttpUtility.HtmlDecode(blog.description).Substring(0, 300))</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="no-margin">@Html.Raw(System.Web.HttpUtility.HtmlDecode(blog.description))</p>
+                                    }
+                                    @if (@blog.description.Length > 300)
+                                    {
+                                        <a class="read-more" href="/blog/detail/@blog.slug">Read More</a>
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+

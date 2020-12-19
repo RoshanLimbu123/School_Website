@@ -1,0 +1,78 @@
+﻿@model CMS.Web.Areas.Admin.ViewModels.DetailsIndexViewModel;
+@{
+    ViewData["Title"] = "Details";
+
+    var list = new List<SelectListItem>() {
+new SelectListItem { Text = "10", Value = "10"},
+new SelectListItem { Text = "20", Value = "20" },
+new SelectListItem { Text = "30", Value = "30" },
+new SelectListItem { Text = "40", Value = "40"},
+new SelectListItem { Text = "50", Value = "50" }
+};
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="m-t-0 header-title"><b>Details</b></h4>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="/admin/details/new" class="btn btn-icon waves-effect waves-light btn-success btn-sm"><i class="fa fa-plus"></i> Add Details</a>
+                    </div>
+
+                    <form action="/admin/details" method="get" class="row col-sm-6">
+
+                        <div class="col-sm-3">
+                            <button type="submit" class="form-control no-padding btn btn-primary btn-lg"><i class="fa fa-refresh"></i></button>
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="table-responsive">
+                    <table class="table m-0">
+                        <thead class="bg-custom text-white">
+                            <tr>
+                                <th>#</th>
+                                <th>Value 1</th>
+                                <th>Value 2</th>
+                                <th>Value 3</th>
+                                <th>Value 4</th>
+                                <th>Value 5</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var sn = 1;
+                                foreach (var details in Model.details)
+                                {
+                                    <tr>
+                                        <td>@sn</td>
+                                        <td>@details.value0</td>
+                                        <td>@details.value1</td>
+                                        <td>@details.value2</td>
+                                        <td>@details.value3</td>
+                                        <td>@details.value4</td>
+
+
+
+                                        <td>
+
+                                            <a href="/admin/details/edit/@details.details_id" class="btn btn-icon waves-effect waves-light btn-primary btn-sm" data-toggle="tooltip" title="Update Details"><i class="fa fa-edit"></i></a>
+                                            <a href="/admin/details/delete/@details.details_id" class="btn btn-icon waves-effect waves-light btn-danger btn-sm delete" data-toggle="tooltip" title="Details"><i class="fa fa-trash"></i></a>
+
+                                        </td>
+                                    </tr>
+                                    sn++;
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

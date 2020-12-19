@@ -1,0 +1,56 @@
+﻿@model CMS.Web.ViewModels.GalleryImageViewModel
+@{
+    ViewData["Title"] = "Gallery";
+}
+
+
+<div class="wshipping-content-block wshipping-breadcroumb inner-bg-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <h1>Image Gallery</h1>
+                <a href="/" title="Home">Home</a> / Image Gallery
+            </div>
+           
+        </div>
+    </div>
+</div>
+<!-- Breadcroumbs end -->
+<!-- Image Gallery Start -->
+<div class="wshipping-content-block pb65">
+    <div class="container">
+      
+        <div class="row">
+            @{ foreach (var gallery in Model.gellery_details)
+                {
+
+
+
+                        <div class="col-12 col-md-6 col-lg-3 l-gallery-holder">
+                            <a class="latest-gallery" href="~/images/custom/@gallery.image_name" data-fancybox="images" ><i class="fa fa-search-plus"></i><img src="~/images/custom/@gallery.image_name" alt="" /></a>
+                            @if (gallery.title != null)
+                            {
+                                <h3 class="heading3-border text-uppercase">@gallery.title.ToUpperInvariant()</h3>
+                            }
+                        </div>
+                  
+                }
+            }
+        </div>
+               
+
+      
+    </div>
+</div>
+<style>
+    img {
+     
+        position: relative;
+       
+        padding:20px;
+        height: 200px;
+    }
+</style>
+
+
+

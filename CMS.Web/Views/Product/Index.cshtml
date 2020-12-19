@@ -1,0 +1,68 @@
+﻿@model CMS.Web.ViewModels.ProductCategoryViewModel
+@{
+    ViewData["Title"] = "Our Products";
+}
+
+
+
+    <section class="page-title-section " data-overlay-dark="7" style="background-image: url(https://64.media.tumblr.com/c9e620b709e7d2b0d929665a7b1380fd/1c601eb4962b2321-4e/s500x750/05025ea8e680e655acdaeb37d7b392d0f1c83103.gifv)">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-7 col-sm-12">
+                    <h1>Products</h1>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <ul class="text-right xs-text-left sm-margin-8px-top xs-margin-5px-top">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            @foreach (var product in Model.products)
+            {
+                <div class="col-lg-6 margin-30px-bottom sm-margin-20px-bottom">
+                    <div class="case-block">
+                        <div class="row">
+                            @{
+                                var imgSrc = "/images/";
+                                if (string.IsNullOrWhiteSpace(product.file_name))
+                                {
+                                    imgSrc = "/img/gallery.jpg";
+                                }
+                                else
+                                {
+                                    imgSrc += "custom/" + product.file_name;
+                                }
+                            }
+                            <div class="col-md-6 col-xs-12"><img src="@imgSrc" alt="case"></div>
+                            <div class="col-md-6 col-xs-12">
+                                <div class="case-block-inner">
+                                    <h4>@product.name.ToUpper()</h4>
+                                    @if (System.Web.HttpUtility.HtmlDecode(product.description).Length > 150)
+                                    {
+                                        <p class="no-margin">@Html.Raw(System.Web.HttpUtility.HtmlDecode(product.description).Substring(0, 150))</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="no-margin">@Html.Raw(System.Web.HttpUtility.HtmlDecode(product.description))</p>
+                                    }
+                                    <a href="/product/detail/@product.slug">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+            }
+        </div>
+    </div>
+</section>

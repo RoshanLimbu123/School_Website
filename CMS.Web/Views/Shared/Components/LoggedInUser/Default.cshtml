@@ -1,0 +1,24 @@
+﻿@model CMS.User.Entity.User
+
+<li class="dropdown user-box list-inline-item">
+    <a href="#" class="dropdown-toggle waves-effect user-link" data-toggle="dropdown" aria-expanded="true" style="color:inherit;">
+
+        @{ 
+            var imgSrc = "/images/";
+            if (string.IsNullOrWhiteSpace(Model.image_path))
+            {
+                imgSrc += "user.png";
+            }
+            else
+            {
+                imgSrc += "custom/" + Model.image_path;
+            }
+        }
+        <img src="@imgSrc" alt="user-img" class="rounded-circle user-img">
+        @Model.full_name
+    </a>
+    <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
+
+        <li><a href="/account/logout" class="dropdown-item">Logout</a></li>
+    </ul>
+</li>

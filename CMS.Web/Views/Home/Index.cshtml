@@ -1,0 +1,694 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<SharedResource> Localizer
+@{
+    ViewData["Title"] = "Home";
+}
+
+@model CMS.Web.Models.EnquiryModel
+
+
+
+<section class="banner position-ralative">
+    <div id="main-slider" class="swiper-container h-800 h-lg-700 h-md-600 h-sm-400">
+        <div class="swiper-wrapper">
+            @{
+                foreach (var slider in ViewBag.sliderImages)
+                {
+                    <!-- Swiper Slider 1-->
+                    <div class="swiper-slide " background-position: center center;">
+                        <img src="/Images/custom/@slider.image_name" style="width:100%;height:auto" />
+
+                        <div class="swipeinner container">
+                            <div class="row justify-content-center text-center">
+                                <div class="col-lg-10 col-md-12">
+                                    <div class="slider-1">
+                                        <div class="animated" data-swiper-animation="fadeInUp" data-duration="1s" data-delay="0.25s">
+                                            <h1 class="animated text-white mb-4" data-swiper-animation="fadeInUp" data-duration="1.5s" data-delay="0.25s">Exceptional Education. Exceptional Value.</h1>
+                                            <div class="animated text-white px-lg-5" data-swiper-animation="fadeInUp" data-duration="2.5s" data-delay="0.25s">
+                                                <p class="d-none d-sm-block">The first thing to remember about success is that it is a process nothing more, nothing less. There is really no magic to it and it’s not reserved only for a select few people.</p>
+                                            </div>
+                                            <a href="index.html#" class="animated4 btn btn-white mt-4 mr-1 mr-sm-2" data-swiper-animation="fadeInUp" data-duration="3.5s" data-delay="0.25s">Read More<span></span></a>
+                                            <a href="index.html#" class="animated4 btn btn-primary mt-4 ml-1 ml-sm-2" data-swiper-animation="fadeInUp" data-duration="3.5s" data-delay="0.25s">Learn More<span></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Swiper Slider 2-->
+
+                }
+            }
+        </div>
+    </div>
+    <!-- Pagination -->
+    <div class="swiper-button-prev text-white"><i class="fa fa-arrow-left"></i></div>
+    <div class="swiper-button-next text-white"><i class="fa fa-arrow-right"></i></div>
+</section>
+<div class="row" style="font-family: Book Antiqua;
+        height: 35px;
+        font-size: 18px;
+        background-color: #1a2844;">
+    <div class="col-md-1 pl-5 text-white Bold" style="float:left; font-size:20px">Notice| </div>
+    <div class="col-md-11" style=" float:left;">
+        <marquee id='scroll_news'>
+            <div onMouseOver="document.getElementById('scroll_news').stop();" onMouseOut="document.getElementById('scroll_news').start();">
+                <a class="text-white" href=/notice/details/new-website-launched>Saturday, December 12, 2020 - New Website Launched |</a>
+                <a class="text-white" href=/notice/details/notice-regarding-admission-on-bca-and-bba>Sunday, December 13, 2020 - Notice Regarding Admission Open on Commerce,Education and Arts |</a>
+
+                <a class="text-white" href=/notice/details/notice-regarding-physical-classes>Sunday, December 13, 2020 - Notice Regarding Physical class Started |</a>
+            </div>
+        </marquee>
+    </div>
+</div>
+
+<section class="space-ptb">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0 pr-xl-6">
+                <div class="section-title mb-4">
+                    <h2 class="title">Personal Education, Extraordinary Success</h2>
+                    <p class="lead mb-0">Commitment is something that comes from understanding that everything has its price and then having the willingness to pay that price.</p>
+                </div>
+                <p class="mb-4 mb-lg-5">The other virtues practice in succession by Franklin were silence, order, resolution, frugality, industry, sincerity, Justice, moderation, cleanliness, tranquility, chastity and humility. For the summary order he followed a little scheme of employing his time each day.</p>
+                <a href="index.html#" class="btn btn-primary btn-round">Read More</a>
+            </div>
+            <div class="col-lg-6 pr-lg-5">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <img class="img-fluid w-100 border-radius" src="images/custom/dayahang.jpg" alt="">
+                    </div>
+                    <div class="col-sm-5 mt-sm-5 mt-4">
+                        <img class="img-fluid mb-sm-2 w-100 border-radius" src="images/custom/jackmaa.jpg" alt="">
+                        <div class="position-relative bg-overlay-black-50 border-radius overflow-hidden mt-4">
+                            <img class="img-fluid border-radius" src="images/custom/salina.jpg" alt="image">
+                            <a class="btn-animation position-center popup-youtube" href="https://www.youtube.com/watch?v=LgvseYYhqU0">
+                                <i class="fas fa-play"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=================================
+About -->
+<!--=================================
+Counter -->
+<section class="space-pb">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
+                <div class="counter">
+                    <div class="counter-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="counter-content">
+                        <span class="timer" data-to="1790" data-speed="10000">1790</span>
+                        <label>Satisfied Students</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
+                <div class="counter">
+                    <div class="counter-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="counter-content align-self-center">
+                        <span class="timer" data-to="245" data-speed="10000">245</span>
+                        <label>Course Completed</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mb-4 mb-md-0">
+                <div class="counter">
+                    <div class="counter-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="counter-content">
+                        <span class="timer" data-to="491" data-speed="10000">491</span>
+                        <label>Expert Advisors</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="counter">
+                    <div class="counter-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="counter-content">
+                        <span class="timer" data-to="1090" data-speed="10000">1090</span>
+                        <label>Award Winning</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=================================
+Counter -->
+<!--=================================
+Action box -->
+<section class="space-ptb bg-overlay-black-80 bg-holder" data-jarallax='{"speed": 0.5}' style="background-image: url(images/bg/09.jpg);">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <span class="text-white d-block mb-4 h6 font-weight-normal">Are you ready to start your journey with us?</span>
+                <h2 class="text-white mb-4 display-7">Education for Individual and Social Responsibility</h2>
+                <a class="btn btn-primary mr-sm-3 mt-3" href="index.html#">Become A Student</a>
+                <a class="btn btn-white mt-3" href="index.html#">Discover More</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=================================
+Action box -->
+<!--=================================
+Course item -->
+<section class="space-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="section-title">
+                    <h2 class="title">Our Courses</h2>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="my-shuffle-container columns-3 popup-gallery full-screen">
+                    <!-- item START -->
+                    <div class="grid-item" data-groups='["branding"]'>
+                        <div class="course-item">
+                            <div class="coures-img">
+                                <img class="img-fluid" src="images/custom/commerce1.png" alt="">
+                                <div class="course-tag">
+                                    <a href="index.html#">Management</a>
+                                </div>
+                            </div>
+                            <div class="course-conten">
+
+                                <h5 class="mb-3">
+                                    <a href="course-detail.html">Commerce</a>
+                                </h5>
+
+                                <div class="course-meta">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><i class="fas fa-book-open pr-2"></i>2 Years</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- item End -->
+                    <!-- item START -->
+                    <div class="grid-item" data-groups='["web", "photography", "branding"]'>
+                        <div class="course-item">
+                            <div class="coures-img">
+                                <img class="img-fluid" src="images/custom/Education.jpg" alt="">
+                                <div class="course-tag">
+                                    <a href="index.html#">Education</a>
+                                </div>
+                            </div>
+                            <div class="course-conten">
+
+                                <h5 class="mb-3">
+                                    <a href="course-detail.html">Education</a>
+                                </h5>
+
+                                <div class="course-meta">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><i class="fas fa-book-open pr-2"></i>2 Years</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- item End -->
+                    <!-- item START -->
+                    <div class="grid-item" data-groups='["photography"]'>
+                        <div class="course-item">
+                            <div class="coures-img">
+                                <img class="img-fluid" src="images/custom/arts.jpg" alt="">
+                                <div class="course-tag">
+                                    <a href="index.html#">Arts</a>
+                                </div>
+                            </div>
+                            <div class="course-conten">
+
+                                <h5 class="mb-3">
+                                    <a href="course-detail.html">Arts</a>
+                                </h5>
+
+                                <div class="course-meta">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><i class="fas fa-book-open pr-2"></i>2 Years</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- item End -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=================================
+Course item -->
+<!--=================================
+Why choose us -->
+<section class="bg-dark">
+    <div class="container-fluid">
+        <div class="row no-guuters">
+            <div class="col-lg-6 bg-holder d-none d-lg-block" style="        background-image: url(https://content.invisioncic.com/p289038/monthly_2020_02/Newman.thumb.jpg.7b9c63815001d8f440820ca6c2990f43.jpg);">
+            </div>
+            <div class="col-lg-6 px-4 px-md-5 px-lg-6 py-6 px-lg-6" style="background-image: url();">
+                <div class="section-title">
+                    <h2 class="title">Why Choose Us</h2>
+                    <p class="mb-0">Let success motivate you. Find a picture of what epitomizes success to you and then pull it out when you are in need of motivation.</p>
+                </div>
+                <div class="media">
+                    <span class="fa fa-university  mr-3 fa-3x text-white border border-white border-radius p-3 mb-0 font-weight-normal"></span>
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-3">Scholarship & Awards</h5>
+                        <p class="text-white mb-0">We have been providing scholarship to each student who comes under the roof of GM College. And, awards are being awaited for students on meritorious basis for each semester respectively. Besides, scholarship granted by the university will also be given to deserving student(s).</p>
+                    </div>
+                </div>
+                <span class="border-bottom d-block my-5 border-light"></span>
+                <div class="media">
+                    <i class="fa fa-graduation-cap 2 mr-3 fa-3x text-white border border-white border-radius p-3 mb-0 font-weight-normal"></i>
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-3">International study programs</h5>
+                        <p class="text-white mb-0">saying a short prayer, thinking over the day’s business and resolutions, studying and eating breakfast. From eight till twelve he worked at his trade.</p>
+                    </div>
+                </div>
+                <span class="border-bottom d-block my-5 border-light"></span>
+                <div class="media">
+                    <i class="fa fa-users 1 mr-3 fa-3x text-white border border-white border-radius p-3 mb-0 font-weight-normal"></i>
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-3">Highly qualified teaching staff</h5>
+                        <p class="text-white mb-0">From twelve to one he read or overlooked his accounts and dined. From two to five he worked at his trade. The rest of the evening music, or diversion of some sort.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=================================
+Why choose us -->
+<!--=================================
+Event -->
+<section class="space-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="section-title">
+                            <h2 class="title">Latest Events</h2>
+                            <p class="mb-0">Success isn’t really that difficult. There is a significant portion of the population</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 text-md-right mb-4 mb-md-0">
+                        <a class="btn btn-primary btn-round" href="index.html#">View All</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="events">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="events shadow p-4 bg-white border-radius">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <div class="events-img mb-4 mb-lg-0">
+                                                    <img class="img-fluid border-0" src="images/custom/dayahang.jpg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 align-self-center">
+                                                <div class="events-content">
+                                                    <div class="events-tag mb-3">
+                                                        <a href="index.html#" class="badge-danger">Art Competition</a>
+                                                    </div>
+                                                    <a href="event-detail.html" class="text-dark h5">Young leaders in tech policy fellowship</a>
+                                                    <div class="events-meta my-3">
+                                                        <ul class="list-unstyled mb-0 d-flex">
+                                                            <li class="mr-3"><a href="index.html#"><i class="fas fa-calendar-alt pr-1"></i> 5 Oct, 2020</a></li>
+                                                            <li><a href="index.html#"><i class="fas fa-clock pr-1"></i>  9:00 AM - 11:00 AM</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <p class="text-dark mb-lg-0">Franklin’s extraordinary success in life and politics can be attributed to his perseverance to overcome his personal liabilities, and his desire to constantly become better.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 align-self-center text-lg-right text-left">
+                                                <a class="btn btn-dark btn-round" href="index.html#">Join Event</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="events shadow mt-4 p-4 bg-white border-radius">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <div class="events-img mb-4 mb-lg-0">
+                                                    <img class="img-fluid border-0" src="images/custom/jackmaa.jpg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 align-self-center">
+                                                <div class="events-content">
+                                                    <div class="events-tag mb-3">
+                                                        <a href="index.html#" class="badge-success">Architecture Events</a>
+                                                    </div>
+                                                    <a href="event-detail.html" class="text-dark h5">Expert panel- careers in tech policy</a>
+                                                    <div class="events-meta my-3">
+                                                        <ul class="list-unstyled mb-0 d-flex">
+                                                            <li class="mr-3"><a href="index.html#"><i class="fas fa-calendar-alt pr-1"></i> 05 Nov, 2020</a></li>
+                                                            <li><a href="index.html#"><i class="fas fa-clock pr-1"></i>  2:00 PM - 4:00 PM</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <p class="text-dark mb-lg-0">Next time you really want to achieve something, take time to focus on your own personal journal. What is your temptation that is standing in your way to greatness?</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 align-self-center text-lg-right text-left">
+                                                <a class="btn btn-dark btn-round" href="index.html#">Join Event</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="events shadow mt-4 p-4 bg-white border-radius">
+                                        <div class="row">
+                                            <div class="col-lg-3">
+                                                <div class="events-img mb-4 mb-lg-0">
+                                                    <img class="img-fluid border-0" src="images/custom/dayahang.jpg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 align-self-center">
+                                                <div class="events-content">
+                                                    <div class="events-tag mb-3">
+                                                        <a href="index.html#" class="badge-warning">Medicine Events</a>
+                                                    </div>
+                                                    <a href="event-detail.html" class="text-dark h5">Health and life expectancy</a>
+                                                    <div class="events-meta my-3">
+                                                        <ul class="list-unstyled mb-0 d-flex">
+                                                            <li class="mr-3"><a href="index.html#"><i class="fas fa-calendar-alt pr-1"></i> 27 Nov, 2020</a></li>
+                                                            <li><a href="index.html#"><i class="fas fa-clock pr-1"></i>  4:00 PM - 6:00 PM</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <p class="text-dark mb-lg-0">Get yourself nice and relaxed and settled. Concentrate on your breathing, engage in the moment and spend some time being still, quiet and drift inside of your own mind.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 align-self-center text-lg-right text-left">
+                                                <a class="btn btn-dark btn-round" href="index.html#">Join Event</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=================================
+Event -->
+<!--=================================
+Team -->
+<section class="space-ptb bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 text-center">
+                <!-- Section Title START -->
+                <div class="section-title">
+                    <h2>Meet Our Team</h2>
+                    <p>Meet the outstanding performers in our industry-award-winning team of professionals</p>
+                </div>
+                <!-- Section Title END -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 mb-4 mb-md-0">
+                <!-- team-01 START -->
+                <div class="team">
+                    <div class="team-img">
+                        <img class="img-fluid" src="~/Images/custom/dayahang.jpg" alt="">
+                    </div>
+                    <div class="team-info">
+                        <a href="teachers-single.html" class="team-name">DayaHang Rai</a>
+                        <p class="team-leader">Team Leader</p>
+                        <ul class="list-unstyled">
+                            <li><a href="index.html#"><i class="fa fa-facebook-f"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-linkedin-in"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- team-01 END -->
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 mb-4 mb-md-0">
+                <!-- team-01 START -->
+                <div class="team">
+                    <img class="img-fluid" src="images/custom/jackmaa.jpg" alt="">
+                    <div class="team-info">
+                        <a href="teachers-single.html" class="team-name">Selena Gomez</a>
+                        <p class="team-leader">Illustration</p>
+                        <ul class="list-unstyled">
+                            <li><a href="index.html#"><i class="fa fa-facebook-f"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-linkedin-in"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- team-01 END -->
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <!-- team-01 START -->
+                <div class="team">
+                    <div class="team-img">
+                        <img class="img-fluid" src="images/custom/dayahang.jpg" alt="">
+                    </div>
+                    <div class="team-info">
+                        <a href="teachers-single.html" class="team-name">Jack Ma</a>
+                        <p class="team-leader">Sales and Marketing</p>
+                        <ul class="list-unstyled">
+                            <li><a href="index.html#"><i class="fa fa-facebook-f"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-linkedin-in"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- team-01 END -->
+            </div>
+        </div>
+    </div>
+</section>
+<!--=================================
+Team -->
+<!--=================================
+Articles -->
+<section class="space-ptb position-relative">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-10 text-center">
+                <!-- Section Title START -->
+                <div class="section-title">
+                    <h2 class="title">Latest Articles</h2>
+                    <p>Check out our latest blog posts, articles, client success stories and essential announcement</p>
+                </div>
+                <!-- Section Title END -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-0">
+                <!-- Blog 01 START -->
+                <div class="blog mb-4 mb-lg-0">
+                    <!-- Blog image -->
+                    <div class="blog-image">
+                        <img class="img-fluid border-radius" src="images/custom/salina.jpg" alt="">
+                    </div>
+                    <!-- Blog content -->
+                    <div class="blog-content pt-4 border-0">
+                        <h5 class="blog-title mb-3"><a href="blog-detail.html">The problem with the push for more college degrees</a></h5>
+                        <div class="blog-meta mb-0">
+                            <ul class="list-unstyled mb-0 d-flex">
+                                <li class="mr-3"><a href="index.html#"><i class="fas fa-calendar-alt pr-1"></i> 15 Oct, 2020</a></li>
+                                <li><a href="index.html#"><i class="fas fa-clock pr-1"></i>  10:00 AM - 12:00 PM</a></li>
+                            </ul>
+                        </div>
+                        <p class="mt-3 mb-0">Imagine reaching deep inside you for all the strength and wisdom that you need to make this decision today.</p>
+                    </div>
+                </div>
+                <!-- Blog 01 END -->
+            </div>
+            <div class="col-lg-6 col-md-12 mb-0">
+                <!-- Blog 02 START -->
+                <div class="blog d-md-flex border-bottom mb-4 pb-4">
+                    <!-- Blog image -->
+                    <div class="blog-image mr-0 mr-sm-3">
+                        <img class="img-fluid border-radius" src="images/custom/dayahang.jpg" alt="">
+                    </div>
+                    <!-- Blog content -->
+                    <div class="blog-content pt-4 pt-md-0 border-0">
+                        <h5 class="blog-title mb-3"><a href="blog-detail.html">Colleges with the most hispanic students</a></h5>
+                        <div class="blog-meta mb-0">
+                            <ul class="list-unstyled mb-0 d-flex">
+                                <li class="mr-3"><a href="index.html#"><i class="fas fa-calendar-alt pr-1"></i> 20 Sept, 2020</a></li>
+                                <li><a href="index.html#"><i class="fas fa-clock pr-1"></i>  12:00 PM - 3:00 PM</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog 02 END -->
+                <!-- Blog 02 START -->
+                <div class="blog d-md-flex border-bottom mb-4 pb-4">
+                    <!-- Blog image -->
+                    <div class="blog-image mr-0 mr-sm-3">
+                        <img class="img-fluid border-radius" src="images/custom/jackmaa.jpg" alt="">
+                    </div>
+                    <!-- Blog content -->
+                    <div class="blog-content pt-4 pt-md-0 border-0">
+                        <h5 class="blog-title mb-3"><a href="blog-detail.html">Get a job, internship during COVID-19</a></h5>
+                        <div class="blog-meta mb-0">
+                            <ul class="list-unstyled mb-0 d-flex">
+                                <li class="mr-3"><a href="index.html#"><i class="fas fa-calendar-alt pr-1"></i> 05 Nov, 2020</a></li>
+                                <li><a href="index.html#"><i class="fas fa-clock pr-1"></i>  2:00 PM - 4:00 PM</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog 02 END -->
+                <!-- Blog 02 START -->
+                <div class="blog d-md-flex">
+                    <!-- Blog image -->
+                    <div class="blog-image mr-0 mr-sm-3">
+                        <img class="img-fluid border-radius" src="~/Images/custom/dayahang.jpg" alt="">
+                    </div>
+                    <!-- Blog content -->
+                    <div class="blog-content pt-4 pt-md-0 border-0">
+                        <h5 class="blog-title mb-3"><a href="blog-detail.html">Why student loan default rate matters</a></h5>
+                        <div class="blog-meta mb-0">
+                            <ul class="list-unstyled mb-0 d-flex">
+                                <li class="mr-3"><a href="index.html#"><i class="fas fa-calendar-alt pr-1"></i> 27 Nov, 2020</a></li>
+                                <li><a href="index.html#"><i class="fas fa-clock pr-1"></i>  4:00 PM - 6:00 PM</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Blog 02 END -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--=================================
+Articles -->
+<!--=================================
+Call to action -->
+<section class="positoin-relative z-index-9">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="p-4 bg-primary border-radius">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row justify-content-between">
+                                <div class="col-lg-7 col-md-8 align-self-center mb-4 mb-md-0">
+                                    <h2>Leading Edge Software</h2>
+                                    <p class="mb-0 text-white">You Think We Make IT Easy.</p>
+                                </div>
+                                <div class="col-lg-5 col-md-4 justify-content-end align-self-center">
+                                    <div class="subscribe-form">
+                                        <form action="index.html#">
+                                            <input class="form-control" placeholder="Enter your email" type="email">
+                                            <a href="index.html#"><i class="fas fa-long-arrow-alt-right"></i></a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade " id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header text-center contact100">
+                <h4 class="modal-title w-100 font-weight-bold">Enquiry Form</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="login bg-white shadow p-5" action="/send-enquiry" class="form-group" method="post">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label> Name</label>
+                            @Html.TextBoxFor(a => a.name, new { @class = "form-control", @required = "required" })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Contact Number</label>
+                            @Html.TextBoxFor(a => a.contact_number, new { @class = "form-control ", @required = "required", maxlength = "10" })
+                            <span class="focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    @Html.TextBoxFor(a => a.address, new { @class = "form-control", @required = "required" })
+                    <span class="focus-border"></span>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    @Html.TextBoxFor(a => a.email, new { @class = "form-control", @required = "required" })
+                    <span class="focus-border"></span>
+                </div>
+                <div class="form-group">
+                    <label>Comment</label>
+                    @Html.TextAreaFor(a => a.description, new { @class = "form-control", @required = "required", rows = "4", cols = "50" })
+                    <span class="focus-border"></span>
+                </div>
+
+                    <button type="submit" style="background-color:blueviolet" class="btn btn-submit">Submit</button>
+
+            </form>
+        </div>
+    </div>
+    <style>
+        .contact100 {
+            background: #a64bf4;
+            background: -webkit-linear-gradient(45deg,#00dbde,#fc00ff);
+            background: -o-linear-gradient(45deg,#00dbde,#fc00ff);
+            background: -moz-linear-gradient(45deg,#00dbde,#fc00ff);
+            background: linear-gradient(45deg,#00dbde,#fc00ff);
+        }
+    </style>
+    <style>
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+    </style>
+
+    @section Scripts{
+        <script>$("#myModal".modal('show');</script>
+    }

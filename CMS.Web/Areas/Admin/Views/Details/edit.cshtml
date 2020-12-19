@@ -1,0 +1,91 @@
+﻿@model CMS.Web.Areas.Core.Models.DetailsModel;
+
+    @{
+        ViewData["Title"] = "Update Details";
+    }
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="m-t-0 header-title"><b>Update Details</b></h4>
+                    <p class="text-muted m-b-30">
+                        Edits an Details
+                    </p>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form class="form-horizontal" method="post" action="/admin/details/edit">
+
+                                @Html.ValidationSummary(true)
+
+                                @Html.AntiForgeryToken()
+
+                                @Html.HiddenFor(a => a.details_id)
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.value0, new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(a => a.value0, new { @class = "form-control" })
+
+                                    </div>
+
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.value0)</p>
+                                </div>
+
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.value1, new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(a => a.value1, new { @class = "form-control" })
+
+                                    </div>
+
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.value1)</p>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.value2, new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(a => a.value2, new { @class = "form-control" })
+
+                                    </div>
+
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.value2)</p>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.value3, new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(a => a.value3, new { @class = "form-control" })
+
+                                    </div>
+
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.value3)</p>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(a => a.value4, new { @class = "col-md-3 control-label" })
+
+                                    <div class="col-md-9">
+                                        @Html.TextBoxFor(a => a.value4, new { @class = "form-control" })
+
+                                    </div>
+
+                                    <p class="text-danger">@Html.ValidationMessageFor(a => a.value4)</p>
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary waves-effect w-md waves-light pull-right">Update</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-lg-4 col-lg-offset-2 images-list" id="previewImg">
+                            <img id="image" class="image-preview" src="#" alt="" />
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+            </div>
+        </div><!-- end col -->
+    </div>

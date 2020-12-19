@@ -1,0 +1,101 @@
+﻿@model List<CMS.Core.Entity.Partners>
+@{
+    ViewData["Title"] = "Partners";
+}
+
+@{
+    string getImage(string file_name)
+    {
+        var extension = System.IO.Path.GetExtension(file_name).ToLower();
+
+        var imageFormats = new[] { ".jpeg", ".png", ".jpg" };
+
+        var docFormats = new[] { ".xls", ".xlsx" };
+
+        var pdfFormats = new[] { ".pdf" };
+
+        var powerPointFormats = new[] { ".ppt", ".pptx" };
+
+        if (imageFormats.Contains(extension))
+        {
+            return "/images/custom/" + file_name;
+        }
+
+        if (docFormats.Contains(extension))
+        {
+            return "/images/doc.png";
+        }
+
+        if (pdfFormats.Contains(extension))
+        {
+            return "/images/pdf.png";
+        }
+
+        return "/images/ppt.png";
+    }
+}
+<div class="wshipping-content-block wshipping-breadcroumb inner-bg-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <h1>Partners</h1>
+                <a href="/" title="Home">Home</a> / Partners
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="wshipping-content-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 offset-lg-3">
+                <div class="section-title wow fadeInUp">
+                    <h2>Our Partners</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            @{
+                foreach (var partners in Model)
+                {
+                    <div class="col-12 col-lg-4">
+                        <div class="blog-item wow fadeInUp">
+                            @{
+                                var imgSrc = "/images/";
+                                if (string.IsNullOrWhiteSpace(partners.logo_name))
+                                {
+                                    imgSrc = "/img/user.png";
+                                }
+                                else
+                                {
+                                    imgSrc += "custom/" + partners.logo_name;
+                                }
+                            }
+
+                            <a href="//@partners.web_url" target="_blank">
+                                <img src="@imgSrc" alt="image" style="width:100%;height:250px;">
+                            </a>
+
+
+
+                            <div class="blog-content">
+                                <h3>@partners.name</h3>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

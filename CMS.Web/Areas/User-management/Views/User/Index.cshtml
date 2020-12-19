@@ -1,0 +1,147 @@
+﻿@model UserIndexViewModel
+@{
+    ViewData["Title"] = "Users";
+
+    var list = new List<SelectListItem>() {
+new SelectListItem { Text = "10", Value = "10"},
+new SelectListItem { Text = "20", Value = "20" },
+new SelectListItem { Text = "30", Value = "30" },
+new SelectListItem { Text = "40", Value = "40"},
+new SelectListItem { Text = "50", Value = "50" }
+};
+}
+
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/admin">Home</a>
+        </li>
+
+        Users
+    </ul>
+</div>
+
+<div class="page-body">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="widget">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="widget">
+                            <div class="widget-header ">
+                                <span class="widget-caption">USERS</span>
+                                <div class="widget-buttons">
+                                    <a href="tables-data.html#" data-toggle="maximize">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                    <a href="tables-data.html#" data-toggle="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </a>
+                                    <a href="tables-data.html#" data-toggle="dispose">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <a href="user/new" class="btn btn-icon waves-effect waves-light btn-success btn-sm"><i class="fa fa-plus"></i> Add New Users</a>
+
+                                <div class="table-toolbar">
+                                    <form action="/user-management/user" method="get" class="row col-sm-push">
+
+                                        <div class="col-sm-6">
+                                            @Html.TextBox("name", "", new { @class = "form-control no-padding", placeholder = "Title" })
+                                        </div>
+                                        <div class="col-sm-3">
+                                            @Html.DropDownList("number_of_rows", list, new { @class = "form-control pull-right" })
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button type="submit" class="btn btn-primary waves-effect w-md waves-light" style="margin-left:5px;">Load <i class="fa fa-spinner "></i></button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <table class="table table-striped table-hover table-bordered" id="editabledatatable">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>Full Name</th>
+                                            <th>Address 1</th>
+                                            <th>Address 2</th>
+                                            <th>Contact</th>
+                                            <th style="width:120px;">Email</th>
+                                            <th>Created Date</th>
+                                            <th>Username</th>
+                                            <th style="width:100px;">Roles</th>
+                                            <th style="width:80px;">Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @{
+                                            foreach (var user in Model.user_details)
+                                            {
+                                                <tr>
+                                                    <td>@user.full_name</td>
+                                                    <td>@user.address_line_1</td>
+                                                    <td>@user.address_line_2</td>
+                                                    <td>@user.primary_contact,@user.secondary_contact</td>
+                                                    <td>@user.email</td>
+                                                    <td>@user.created_date.ToString("yyyy-MM-dd")</td>
+                                                    <td>@user.username</td>
+                                                    <td>
+                                                        @{
+                                                            string role = string.Join(",", user.roles);
+                                                        }
+                                                        @role
+                                                    </td>
+                                                    <td>
+                                                        <p>
+                                                            @{
+                                                                var status = user.is_active ? "Enabled" : "Disabled";
+                                                                <text>@status</text>
+                                                            }
+                                                        </p>
+                                                    </td>
+                                                    <td>
+
+                                                        <div class="btn-group">
+                                                            <a class="btn btn-primary " href="javascript:void(0);">Actions</a>
+                                                            <a class="btn btn-primary  dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+                                                            <ul class="dropdown-menu dropdown-primary">
+                                                                <li>
+                                                                    <a href="/user-management/user/edit/@user.user_id">Edit</a>
+                                                                </li>
+                                                                <li class="divider"></li>
+                                                                <li>
+                                                                    @{
+                                                                        if (user.is_active)
+                                                                        {
+                                                                            <text><a href="/user-management/user/disable/@user.user_id">Disable </a> </text>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <text> <a href="/user-management/user/enable/@user.user_id">Enable</a> </text>
+                                                                        }
+                                                                    }
+                                                                    <a href="/user-management/user/change-password/@user.authentication_id">Change Password</a>
+
+                                                            </ul>
+                                                        </div>
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                                <LeadingEdgePager info="@ViewBag.pagerInfo"></LeadingEdgePager>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

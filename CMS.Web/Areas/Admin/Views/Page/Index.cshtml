@@ -1,0 +1,176 @@
+﻿@model PageIndexViewModel;
+@{
+    ViewData["Title"] = "Pages";
+
+    var list = new List<SelectListItem>() {
+new SelectListItem { Text = "10", Value = "10"},
+new SelectListItem { Text = "20", Value = "20" },
+new SelectListItem { Text = "30", Value = "30" },
+new SelectListItem { Text = "40", Value = "40"},
+new SelectListItem { Text = "50", Value = "50" }
+};
+}
+
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/admin">Home</a>
+        </li>
+
+        <li class="active">Page</li>
+    </ul>
+</div>
+
+<div class="page-body">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="widget">
+
+
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <div class="widget">
+                            <div class="widget-header ">
+                                <span class="widget-caption">VIEW PAGE</span>
+                                <div class="widget-buttons">
+                                    <a href="tables-data.html#" data-toggle="maximize">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                    <a href="tables-data.html#" data-toggle="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </a>
+                                    <a href="tables-data.html#" data-toggle="dispose">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <a href="/admin/Page/new" class="btn btn-icon waves-effect waves-light btn-success btn-sm"><i class="fa fa-plus"></i> Add Page</a>
+
+                                <div class="table-toolbar">
+                                    <form action="/admin/Page" method="get" class="row col-sm-push">
+
+                                        <div class="col-sm-6">
+                                            @Html.TextBox("title", "", new { @class = "form-control no-padding", placeholder = "Title" })
+                                        </div>
+                                        <div class="col-sm-3">
+                                            @Html.DropDownList("number_of_rows", list, new { @class = "form-control pull-right" })
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button type="submit" class="btn btn-primary waves-effect w-md waves-light" style="margin-left:5px;">Load <i class="fa fa-spinner "></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <table class="table table-striped table-hover table-bordered" id="editabledatatable">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>#</th>
+                                            <th>Page Name</th>
+                                            <th>Page Category</th>
+                                            <th>Image</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @{ var sn = 1;
+                                            foreach (var pages in Model.page_details)
+                                            {
+                                                <tr>
+                                                    <td>@sn</td>
+                                                    <td>@pages.title</td>
+                                                    <td>@pages.page_category_name</td>
+                                                    <td>
+                                                        @{
+                                                            if (pages.image_name != null)
+                                                            {
+                                                                <img src="~/images/custom/@pages.image_name" style="height:40px;width:50px;" />
+
+                                                            }
+
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @{
+                                                            string homeLabel = "";
+                                                            if (pages.is_home_page)
+                                                            {
+                                                                homeLabel = "Home Page";
+                                                            }
+
+                                                            if (pages.is_enabled)
+                                                            {
+                                                                <text>Enabled(@homeLabel)</text>
+                                                            }
+                                                            else
+                                                            {
+                                                                <text>Disabled(@homeLabel)</text>
+                                                            }
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <a class="btn btn-primary " href="javascript:void(0);">Actions</a>
+                                                            <a class="btn btn-primary  dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+                                                            <ul class="dropdown-menu dropdown-primary">
+                                                                <li>
+                                                                    <a href="/admin/page/edit/@pages.page_id">Edit</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="/admin/page/delete/@pages.page_id" class="delete">Delete</a>
+                                                                </li>
+                                                                <li class="divider"></li>
+                                                                <li>
+                                                                    @{
+                                                                        if (pages.is_enabled)
+                                                                        {
+                                                                            <a href="/admin/page/disable/@pages.page_id">Disable</a>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <a href="/admin/page/enable/@pages.page_id">Enable</a>
+                                                                        }
+                                                                    }
+
+                                                                </li>
+                                                                @{
+                                                                    if (pages.is_home_page == false)
+                                                                    {
+                                                                        <li>
+                                                                            <a href="~/admin/page/make-home-page/@pages.page_id">Make Home Page</a>
+                                                                        </li>
+                                                                    }
+                                                                }
+
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                sn++;
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+                                <LeadingEdgePager info="@ViewBag.pagerInfo"></LeadingEdgePager>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/Custom.js"></script>
+@section scripts{
+    <script>
+        $('.delete').on('click', function () {
+            if (!confirm("Are you sure to delete?")) {
+                event.preventDefault();
+            }
+        });
+    </script>
+}

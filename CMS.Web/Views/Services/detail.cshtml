@@ -1,0 +1,64 @@
+﻿@model CMS.Core.Entity.Services
+@{
+    var detail = Model;
+    ViewData["Title"] = detail.name.ToUpperInvariant();
+}
+
+
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f22836a0984abd4"></script>
+
+
+<section class="page-title-section " data-overlay-dark="7" style="background-image: url(https://64.media.tumblr.com/c9e620b709e7d2b0d929665a7b1380fd/1c601eb4962b2321-4e/s500x750/05025ea8e680e655acdaeb37d7b392d0f1c83103.gifv)">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-7 col-sm-12">
+                <h1>Services</h1>
+            </div>
+            <div class="col-md-5 col-sm-12">
+                <ul class="text-right xs-text-left sm-margin-8px-top xs-margin-5px-top">
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="#">@detail.name.ToUpperInvariant()</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="padding-30px-right">
+
+                    <h4> <span class="padding-0px-left xs-padding-20px-left text-theme-color">@detail.name.ToUpperInvariant()</span></h4>
+                    <div class="addthis_inline_share_toolbox"></div>
+
+                    <p class="no-margin-bottom">@Html.Raw(System.Web.HttpUtility.HtmlDecode(detail.description))</p>
+
+                </div>
+
+            </div>
+            <div class="col-lg-6 col-md-12">
+                @{
+                    var imgSrc = "/images/";
+                    if (string.IsNullOrWhiteSpace(detail.image))
+                    {
+                        imgSrc += "default-image.jpg";
+                    }
+                    else
+                    {
+                        imgSrc += "custom/" + detail.image;
+                    }
+                }
+                <div class="bg-img cover-background box-shadow-primary h-100" data-overlay-dark="0">
+                    <img src="@imgSrc" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

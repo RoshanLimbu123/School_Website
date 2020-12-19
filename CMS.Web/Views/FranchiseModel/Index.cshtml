@@ -1,0 +1,106 @@
+﻿@model List<CMS.Core.Entity.FranchiseModel>
+@{
+    ViewData["Title"] = "Franchise-Model";
+}
+
+@{
+    string getImage(string file_name)
+    {
+        var extension = System.IO.Path.GetExtension(file_name).ToLower();
+
+        var imageFormats = new[] { ".jpeg", ".png", ".jpg" };
+
+        var docFormats = new[] { ".xls", ".xlsx" };
+
+        var pdfFormats = new[] { ".pdf" };
+
+        var powerPointFormats = new[] { ".ppt", ".pptx" };
+
+        if (imageFormats.Contains(extension))
+        {
+            return "/images/custom/" + file_name;
+        }
+
+        if (docFormats.Contains(extension))
+        {
+            return "/images/doc.png";
+        }
+
+        if (pdfFormats.Contains(extension))
+        {
+            return "/images/pdf.png";
+        }
+
+        return "/images/ppt.png";
+    }
+}
+<div class="wshipping-content-block wshipping-breadcroumb inner-bg-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <h1>Franchise-Model</h1>
+                <a href="/" title="Home">Home</a> / Franchise-Model
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="wshipping-content-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 offset-lg-3">
+                <div class="section-title wow fadeInUp">
+                    <h2>Franchise-Model</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @{ foreach (var franchise in Model)
+                {
+                        <div class="col-12 col-lg-4">
+                            <div class="single-service-item wow fadeInUp">
+                                <div>
+                                    @{
+                                        var imgSrc = "/images/";
+                                        if (string.IsNullOrWhiteSpace(franchise.file_name))
+                                        {
+                                            imgSrc = "/img/user.png";
+                                        }
+                                        else
+                                        {
+                                            imgSrc += "custom/" + franchise.file_name;
+                                        }
+                                    }
+                                    <img src="@imgSrc" alt="" style="height:300px;" />
+
+                                </div>
+                                <div class="service-content">
+                                    @{
+                                        if (franchise.title != null)
+                                        {
+                                            <h4 href="~/franchise-model/detail/@franchise.slug#">@franchise.title</h4>
+                                        }
+                                    }
+
+                                    @if (System.Web.HttpUtility.HtmlDecode(franchise.description).Length > 100)
+                                    {
+                                        <p class="no-margin">@Html.Raw(System.Web.HttpUtility.HtmlDecode(franchise.description).Substring(0, 100))</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="no-margin">@Html.Raw(System.Web.HttpUtility.HtmlDecode(franchise.description))</p>
+                                    }
+                                    <a href="#" class="wshipping-button slide-btn">Enquiry</a>
+
+                                </div>
+
+                                <div class="location_map"><i class=""></i></div>
+                            </div> <a class="read-more" href="~/franchise-model/detail/@franchise.slug#">Read More</a>
+
+                        </div>
+                }
+            }
+        </div>
+    </div>
+</div>

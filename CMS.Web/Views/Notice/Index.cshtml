@@ -1,0 +1,94 @@
+﻿@model List<CMS.Core.Entity.Notice>
+@{
+    ViewData["Title"] = "Notices";
+}
+
+@{
+
+    var setups = (List<CMS.Core.Entity.Setup>)ViewBag.setup;
+
+    var contactNo = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getPhoneNumberKey).SingleOrDefault()?.value;
+
+    var orgName = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getOrganisationNameKey).SingleOrDefault()?.value;
+
+    var panNo = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getPanNumberKey).SingleOrDefault()?.value;
+
+    var email = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getEmailKey).SingleOrDefault()?.value;
+
+    var address = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getAddressKey).SingleOrDefault()?.value;
+
+    var facebookUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getFacebookKey).SingleOrDefault()?.value;
+
+    var instaUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getInstaKey).SingleOrDefault()?.value;
+
+    var TwitterUrl = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getTwitterKey).SingleOrDefault()?.value;
+
+    var companyDescription = setups.Where(a => a.key == CMS.Web.Models.SetupKeys.getCompanyShortDescriptionKey).SingleOrDefault()?.value;
+
+}
+
+
+<div class="wshipping-content-block wshipping-breadcroumb inner-bg-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <h1>Notices</h1>
+                <a href="/" title="Home">Home</a> / Notices
+            </div>
+
+        </div>
+    </div>
+</div>
+<div style="margin-top: 50px;"></div>
+
+
+<section>
+    <div class="container">
+        <div class="section-heading">
+            <h3>Latest Notices</h3>
+        </div>
+
+        <div class="row">
+            @{ foreach (var notice in Model)
+                {
+                    <div class="col-12 col-lg-4">
+                        <div class="blog-item wow fadeInUp">
+                            @{
+                                var imgSrc = "/images/";
+                                if (string.IsNullOrWhiteSpace(notice.image_name))
+                                {
+                                    imgSrc = "/img/user.png";
+
+                                }
+                                else
+                                {
+                                    imgSrc += "custom/" + notice.image_name;
+                                }
+                            }
+                            <div class="card-img"><img src="@imgSrc" style="height:300px;" alt="" /></div>
+                            <div class="blog-content">
+                                <div class="d-block text-muted margin-10px-bottom small">
+                                    @notice.notice_date.ToString("dddd, dd MMMM yyyy")
+                                </div>
+                                <h3 style="color:black;margin-left:15px;"><a href="~/notice/detail/@notice.slug#">@notice.title.ToUpperInvariant()</a></h3>
+
+                                @if (System.Web.HttpUtility.HtmlDecode(notice.description).Length > 200)
+                                {
+                                    <p class="no-margin" style="margin-left: 5px;">@Html.Raw(System.Web.HttpUtility.HtmlDecode(notice.description).Substring(0, 200))</p>
+                                }
+                                else
+                                {
+                                    <p class="no-margin" style="margin-left: 5px;">@Html.Raw(System.Web.HttpUtility.HtmlDecode(notice.description))</p>
+                                }
+                                <a class="read-more" href="~/notice/detail/@notice.slug#">Read More</a>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                }
+            }
+        </div>
+</section>

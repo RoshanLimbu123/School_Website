@@ -1,0 +1,190 @@
+﻿@model List<CMS.Core.Entity.Setup>
+@using System.Linq
+@{
+    ViewData["Title"] = "Index";
+}
+
+@{
+    List<string> keys = CMS.Web.Models.SetupKeys.getKeys();
+
+    keys.Remove(CMS.Web.Models.SetupKeys.getLocationKey);
+    string lat = "26.644442", lon = "87.989753";
+}
+
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/admin">Home</a>
+        </li>
+        <li>
+            <a href="form-validation.html#">Setting</a>
+        </li>
+        <li class="active">Validation</li>
+    </ul>
+</div>
+<div class="page-body">
+    <div class="row">
+        <div class="col-lg-12 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="widget radius-bordered">
+                        <div class="widget-header">
+                            <span class="widget-caption"> Setting</span>
+                        </div>
+                        <div class="widget-body">
+                            <form action="/admin/setup/save" method="post">
+                                @Html.AntiForgeryToken()
+                                <div class="table-responsive">
+                                    <table class="table m-0">
+                                        <thead class="bg-custom text-white">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @{ int sn = 0; CMS.Core.Entity.Setup setup = new CMS.Core.Entity.Setup(); }
+                                            @foreach (var key in keys)
+                                            {
+                                                string value = "";
+                                                <tr>
+                                                    @{
+                                                        setup = Model.Where(a => a.key == key).SingleOrDefault();
+                                                        if (setup != null)
+                                                        {
+                                                            value = setup.value;
+                                                        }
+                                                    }
+
+                                                    <td><span> @key </span><input type="hidden" name="datas[@sn].key" value="@key" /></td>
+                                                    <td><input type="text" name="datas[@sn].value" value="@value" class="form-control" /></td>
+                                                </tr>
+
+                                                sn++;
+                                            }
+
+                                            <tr>
+                                                <td> Location</td>
+                                                <td>
+                                                    @{
+                                                        setup = Model.Where(a => a.key == CMS.Web.Models.SetupKeys.getLocationKey).SingleOrDefault();
+                                                        if (setup != null)
+                                                        {
+                                                            lat = setup.value.Split(',')[0];
+                                                            lon = setup.value.Split(',')[1];
+                                                        }
+                                                    }
+
+                                                    <input id="searchInput" class="form-control" type="text" placeholder="Enter a location">
+                                                    <div class="map" id="map" style="width: 100%; height: 300px;"></div>
+                                                    <div class="form_area">
+                                                        <input type="text" readonly="readonly" name="location" id="location">
+                                                        <input type="text" readonly="readonly" value="@lat" name="latitude_id" id="latitude_id">
+                                                        <input type="text" readonly="readonly" value="@lon" name="longitude_id" id="longitude_id">
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-6 col-lg-8">
+                                            <input class="btn btn-palegreen" type="submit" value="Save" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyC_JU9jsJnO2HtmV9vXrUxdvyBJwRQA5RA&sensor=false&libraries=places"></script>
+<script>
+
+
+    function initialize() {
+
+
+        $('#searchInput').keydown(function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        var latlng = new google.maps.LatLng('@lat', '@lon');
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: latlng,
+            zoom: 13
+        });
+        var marker = new google.maps.Marker({
+            map: map,
+            position: latlng,
+            draggable: true,
+            anchorPoint: new google.maps.Point(0, -29)
+        });
+        var input = document.getElementById('searchInput');
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        var geocoder = new google.maps.Geocoder();
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+        var infowindow = new google.maps.InfoWindow();
+        autocomplete.addListener('place_changed', function () {
+            infowindow.close();
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                alert("Autocomplete's returned place contains no geometry");
+                return false;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+            }
+
+            marker.setPosition(place.geometry.location);
+            marker.setVisible(true);
+
+            bindDataToForm(place.formatted_address, place.geometry.location.lat(), place.geometry.location.lng());
+            infowindow.setContent(place.formatted_address);
+            infowindow.open(map, marker);
+
+        });
+
+        // this function will work on marker move event into map
+        google.maps.event.addListener(marker, 'dragend', function () {
+            geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        bindDataToForm(results[0].formatted_address, marker.getPosition().lat(), marker.getPosition().lng());
+                        infowindow.setContent(results[0].formatted_address);
+                        infowindow.open(map, marker);
+                    }
+                }
+            });
+        });
+    }
+    function bindDataToForm(address, lat, lng) {
+        document.getElementById('location').value = address;
+        document.getElementById('latitude_id').value = lat;
+        document.getElementById('longitude_id').value = lng;
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+
+</script>
+

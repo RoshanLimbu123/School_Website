@@ -1,0 +1,100 @@
+﻿@model List<CMS.Core.Entity.Outlet>
+@{
+    ViewData["Title"] = "Outlet";
+}
+
+@{
+    string getImage(string file_name)
+    {
+        var extension = System.IO.Path.GetExtension(file_name).ToLower();
+
+        var imageFormats = new[] { ".jpeg", ".png", ".jpg" };
+
+        var docFormats = new[] { ".xls", ".xlsx" };
+
+        var pdfFormats = new[] { ".pdf" };
+
+        var powerPointFormats = new[] { ".ppt", ".pptx" };
+
+        if (imageFormats.Contains(extension))
+        {
+            return "/images/custom/" + file_name;
+        }
+
+        if (docFormats.Contains(extension))
+        {
+            return "/images/doc.png";
+        }
+
+        if (pdfFormats.Contains(extension))
+        {
+            return "/images/pdf.png";
+        }
+
+        return "/images/ppt.png";
+    }
+}
+<div class="wshipping-content-block wshipping-breadcroumb inner-bg-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <h1>Outlet</h1>
+                <a href="/" title="Home">Home</a> / Outlet
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="wshipping-content-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 offset-lg-3">
+                <div class="section-title wow fadeInUp">
+                    <h2>Our Outlet</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            @{ foreach (var outlet in Model)
+                {
+                    <div class="col-12 col-lg-4">
+                        <div class="blog-item wow fadeInUp">
+                            @{
+                                var imgSrc = "/images/";
+                                if (string.IsNullOrWhiteSpace(outlet.file_name))
+                                {
+                                    imgSrc = "/img/user.png";
+                                }
+                                else
+                                {
+                                    imgSrc += "custom/" + outlet.file_name;
+                                }
+                            }
+                            <img src="@imgSrc" alt="image" style="width:100%;">
+
+
+
+                            <div class="blog-content">
+                                <h3>@outlet.title</h3>
+                                <p>@outlet.address</p>
+                                @if (System.Web.HttpUtility.HtmlDecode(outlet.description).Length > 300)
+                                {
+                                    <p class="no-margin">@Html.Raw(System.Web.HttpUtility.HtmlDecode(outlet.description).Substring(0, 300))</p>
+                                }
+                                else
+                                {
+                                    <p class="no-margin">@Html.Raw(System.Web.HttpUtility.HtmlDecode(outlet.description))</p>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+

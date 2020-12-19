@@ -1,0 +1,59 @@
+﻿@model CMS.Web.ViewModels.CoursesDetail
+
+@{
+    var detail = Model;
+    ViewData["Title"] = detail.name;
+}
+
+
+
+<!-- ******CONTENT****** -->
+<div class="content container">
+    <div class="page-wrapper">
+        <header class="page-heading clearfix">
+            <h1 class="heading-title float-left">@detail.name.ToUpperInvariant()</h1>
+            <div class="breadcrumbs float-right">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-label">You are here:</li>
+                    <li><a href="/">Home</a><i class="fas fa-angle-right"></i></li>
+                    <li><a href="/course">Course</a><i class="fas fa-angle-right"></i></li>
+                    <li class="current">@detail.name</li>
+                </ul>
+            </div><!--//breadcrumbs-->
+        </header>
+        <div class="page-content">
+            <div class="row page-row">
+                <div class="course-wrapper col-lg-8 col-md-7">
+                    <article class="course-item">
+                        @{
+                            var imgSrc = "/images/";
+                            if (string.IsNullOrWhiteSpace(Model.file_name))
+                            {
+                                imgSrc += "A_blank_flag.png";
+                            }
+                            else
+                            {
+                                imgSrc += "custom/" + Model.file_name;
+                            }
+                        }
+                        <p class="featured-image page-row"><img class="img-fluid" src="@imgSrc" alt="" /></p>
+
+                        <div class="page-row">
+                            <p>@Html.Raw(Model.description)</p>
+                            <p>
+                                @Html.Raw(Model.features)
+                            </p>
+                            <p>
+                                @Html.Raw(Model.specification)
+                            </p>
+
+                        </div><!--//page-row-->
+                       
+                    </article><!--//course-item-->
+                </div><!--//course-wrapper-->
+               
+            </div><!--//page-row-->
+        </div><!--//page-content-->
+    </div><!--//page-->
+</div><!--//content-->
+    

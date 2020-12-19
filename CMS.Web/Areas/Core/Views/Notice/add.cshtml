@@ -1,0 +1,92 @@
+﻿@model CMS.Core.Dto.NoticeDto
+@{
+    ViewData["Title"] = "New Notice";
+}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="m-t-0 header-title"><b>New Notice</b></h4>
+                <p class="text-muted m-b-30">
+                   Adds a notice
+                </p>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <form class="form-horizontal" method="post" enctype="multipart/form-data">
+
+                            @Html.ValidationSummary(true)
+
+                            @Html.AntiForgeryToken()
+                            <div class="form-group row">
+                                @Html.LabelFor(a => a.title, new { @class = "col-md-3 control-label" })
+
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(a => a.title, new { @class = "form-control" })
+
+                                </div>
+
+                                <p class="text-danger">@Html.ValidationMessageFor(a => a.title)</p>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(a => a.notice_expiry_date, new { @class = "col-md-3 control-label" })
+
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(a => a.notice_expiry_date,DateTime.Now.ToString("yyyy-MM-dd"), new { @class = "form-control",type="date" })
+                                </div>
+
+                                <p class="text-danger">@Html.ValidationMessageFor(a => a.notice_expiry_date)</p>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(a => a.description, new { @class = "col-md-3 control-label" })
+
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(a => a.description, new { @class = "form-control" })
+                                </div>
+
+                                <p class="text-danger">@Html.ValidationMessageFor(a => a.description)</p>
+                            </div>
+
+                            <div class="form-group row">
+                                <input type="file" value="Choose Image" name="file" id="file" />
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary waves-effect w-md waves-light pull-right">Save</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-lg-4 col-lg-offset-2 images-list" id="previewImg">
+                        <img id="image" class="image-preview" src="#" alt="" />
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+    </div><!-- end col -->
+</div>
+
+@section scripts{
+    <script>
+
+        $("#file").change(function () {
+            readURL(this);
+        });
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
+}
+
